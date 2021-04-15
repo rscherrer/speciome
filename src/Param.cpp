@@ -56,7 +56,6 @@ Param::Param() :
     logfile("log.txt"),
     freezerfile("freezer.dat"),
     locifile("locivalues.dat"),
-    pedigreefile("pedigree.dat"),
     seed(makeDefaultSeed()),
     ntrials(100u)
 {
@@ -158,7 +157,6 @@ void Param::import(std::ifstream &file)
         else if (input == "logfile") file >> logfile;
         else if (input == "freezerfile") file >> freezerfile;
         else if (input == "locifile") file >> locifile;
-        else if (input == "pedigreefile") file >> pedigreefile;
         else if (input == "seed") file >> seed;
         else if (input == "ntrials") file >> ntrials;
         else
@@ -357,7 +355,6 @@ void Param::write(std::ofstream &file) const
     file << "logfile " << logfile << '\n';
     file << "freezerfile " << freezerfile << '\n';
     file << "locifile " << locifile << '\n';
-    file << "pedigreefile " << pedigreefile << '\n';
     file << "seed " << seed << '\n';
     file << "ntrials " << ntrials << '\n';
 
