@@ -87,7 +87,6 @@ General simulation parameters:
 * `tend` (10) is the number of generations to simulate (after burn-in)
 * `tsave` (10) is the frequency at which to record the data
 * `tfreeze` (100) is the frequency at which to save the whole genomes of all individuals (separate because it takes a lot of space)
-* `tpedigree` (15000) is the frequency at which to perform a pedigree experiment (see below)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
 * `record` (1) is either 0 or 1 and sets whether to record the data at all every `tsave` and `tfreeze` generations
 * `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
@@ -96,15 +95,11 @@ General simulation parameters:
 * `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into a file (see below)
 * `archload` (0) sets whether the genetic architecture of the simulation should be loaded from a file instead of generated anew
 * `parsave` (1) sets whether to save the parameters of the simulation run to file, including the random seed
-* `pedigreesave` (0) set whether to perform pedigree experiments every `tpedigree` generations
 * `archfile` (architecture.txt) is the name of the architecture file where the details of the genetic architecture must be loaded from, if `archload` is 1
 * `parfile` (paramlog.txt) is the name of the output parameter file where to save the parameters of the current simulation, if `parsave` is 1. This can be used e.g. to retrieve a random seed
 * `orderfile` (whattosave.txt) is the name of the order file where the list of variables to save is specified, if `choosewhattosave` is 1
 * `logfile` (log.txt) is the name of a file capturing the console output of the simulation
 * `freezerfile` (freezer.dat) is the name of the binary file where to save individual whole genomes
-* `pedigreefile` (pedigree.dat) is the name of the binary file where to save the results of the pedigree experiment
-* `pedigreetrials` (100) is the number of mating trials to perform in the pedigree experiment
-* `pedigreeoffspring` (10) is the number of offspring to produce per mating in the pedigree experiment
 * `seed` is the seed of the random number generator, and it is by default randomly generated based on the clock
 
 Note: it is not so clear anymore why `record` must be set in order to save data, in addition to e.g. `datsave` or `gensave`.
