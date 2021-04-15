@@ -90,8 +90,6 @@ struct Param {
     std::string pedigreefile;
     size_t seed;
     size_t ntrials;
-    size_t pedigreetrials;
-    size_t pedigreeoffspring;
 
 };
 

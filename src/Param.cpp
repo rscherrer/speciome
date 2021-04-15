@@ -58,9 +58,7 @@ Param::Param() :
     locifile("locivalues.dat"),
     pedigreefile("pedigree.dat"),
     seed(makeDefaultSeed()),
-    ntrials(100u),
-    pedigreetrials(100u),
-    pedigreeoffspring(10u)
+    ntrials(100u)
 {
 
     // Make sure parameter values make sense
@@ -163,8 +161,6 @@ void Param::import(std::ifstream &file)
         else if (input == "pedigreefile") file >> pedigreefile;
         else if (input == "seed") file >> seed;
         else if (input == "ntrials") file >> ntrials;
-        else if (input == "pedigreetrials") file >> pedigreetrials;
-        else if (input == "pedigreeoffspring") file >> pedigreeoffspring;
         else
             throw std::runtime_error("Invalid parameter name: " + input);
 
@@ -364,7 +360,5 @@ void Param::write(std::ofstream &file) const
     file << "pedigreefile " << pedigreefile << '\n';
     file << "seed " << seed << '\n';
     file << "ntrials " << ntrials << '\n';
-    file << "pedigreetrials " << pedigreetrials << '\n';
-    file << "pedigreeoffspring " << pedigreeoffspring << '\n';
 
 }
