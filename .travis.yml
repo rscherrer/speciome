@@ -64,8 +64,8 @@ script:
  - cppcheck --quiet --error-exitcode=0 . 
   
  # Call OCLint
- #- chmod +x ci/do_oclint 
- #- ./ci/do_oclint
+ - chmod +x ci/do_oclint 
+ - ./ci/do_oclint
   
  # proselint
  - proselint README.md || true
