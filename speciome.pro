@@ -1,6 +1,6 @@
 # Files
 include(speciome.pri)
-SOURCES += src/main.cpp
+SOURCES += main.cpp
 
 # C++20
 CONFIG += c++14
