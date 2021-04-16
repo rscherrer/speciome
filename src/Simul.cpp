@@ -1,14 +1,14 @@
 #include "Simul.h"
 
-bool timetosave(const int &t, const Param &p)
+bool timetosave(const int &t, const int &tsave)
 {
-    return p.record && t >= 0 && t % p.tsave == 0;
+    return t >= 0 && t % tsave == 0;
 }
 
-bool timetofreeze(const int &t, const Param &p)
+bool timetofreeze(const int &t, const int &tfreeze)
 {
-    if (p.tfreeze == 0 && t == 0) return true;
-    return p.record && p.gensave && t > 0 && t % p.tfreeze == 0;
+    if (tfreeze == 0 && t == 0) return true;
+    return t > 0 && t % tfreeze == 0;
 
     // Note: the modulo of zero by some number is always zero, so make sure
     // to set t > 0 as a condition otherwise time point zero will always be
@@ -50,7 +50,7 @@ int simulate(const std::vector<std::string> &args)
 
         // Open the freezer
         Freezer freezer = Freezer();
-        if (pars.gensave) {
+        if (pars.record && pars.gensave) {
 
             freezer.openFreezer(pars.freezerfile);
             freezer.openLoci(pars.locifile);
@@ -75,7 +75,7 @@ int simulate(const std::vector<std::string> &args)
             metapop.consume(pars);
 
             // Analyze the metapopulation if needed
-            if (timetosave(t, pars)) {
+            if (pars.record && timetosave(t, pars.tsave)) {
 
                 // Collect stats
                 collector.analyze(metapop, pars, arch);
@@ -87,7 +87,7 @@ int simulate(const std::vector<std::string> &args)
             }
 
             // Save whole genomes if needed (space-consuming)
-            if (timetofreeze(t, pars))
+            if (pars.record && pars.gensave && timetofreeze(t, pars.tfreeze))
                 freezer.freeze(metapop, pars.nloci);
 
             metapop.reproduce(pars, arch);
