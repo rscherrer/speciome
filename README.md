@@ -43,7 +43,7 @@ All the source and header files needed are in the `src` folder. The main functio
 The program has a command-line interface (CLI). Running it on its own will run a simulation with default parameters (see below). Non-default parameters can be specified by providing a parameter file, i.e. a text file containing on each row the name of a parameter and the value it should take (e.g. `mutation 0.0001`). It should look something like:
 
 ```
-./EGS parameters.txt
+./speciome parameters.txt
 ```
 
 ## Parameters
