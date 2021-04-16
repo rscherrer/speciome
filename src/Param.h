@@ -80,7 +80,7 @@ struct Param {
     bool archsave;
     bool archload;
     bool parsave;
-    bool pedigreesave;
+    bool logsave;
     std::string archfile;
     std::string parfile;
     std::string orderfile;

@@ -49,7 +49,7 @@ Param::Param() :
     archsave(false),
     archload(false),
     parsave(true),
-    pedigreesave(false),
+    logsave(false),
     archfile("architecture.txt"),
     parfile("paramlog.txt"),
     orderfile("whattosave.txt"),
@@ -150,7 +150,7 @@ void Param::import(std::ifstream &file)
         else if (input == "archsave") file >> archsave;
         else if (input == "archload") file >> archload;
         else if (input == "parsave") file >> parsave;
-        else if (input == "pedigreesave") file >> pedigreesave;
+        else if (input == "logsave") file >> logsave;
         else if (input == "archfile") file >> archfile;
         else if (input == "parfile") file >> parfile;
         else if (input == "orderfile") file >> orderfile;
@@ -348,7 +348,7 @@ void Param::write(std::ofstream &file) const
     file << "archsave " << archsave << '\n';
     file << "archload " << archload << '\n';
     file << "parsave " << parsave << '\n';
-    file << "pedigreesave " << pedigreesave << '\n';
+    file << "logsave " << logsave << '\n';
     file << "archfile " << archfile << '\n';
     file << "parfile " << parfile << '\n';
     file << "orderfile " << orderfile << '\n';

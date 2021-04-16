@@ -10,6 +10,7 @@
 #include "Freezer.h"
 #include <stddef.h>
 #include <iostream>
+#include <cstdio>
 
 int simulate(const std::vector<std::string>&);
 

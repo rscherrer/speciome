@@ -57,20 +57,18 @@ int simulate(const std::vector<std::string> &args)
 
         }
 
+        // Redirect output to log file if needed
+        if (pars.logsave) std::freopen(pars.logfile.c_str(), "w", stdout);
+
         // Open a log file
-        std::ofstream logfile(pars.logfile);
         std::cout << "Simulation started.\n";
-        logfile << "Simulation started.\n";
 
         // Loop through time
         for (int t = -pars.tburnin; t < pars.tend; ++t) {
 
             if (t == 0) metapop.exitburnin();
 
-            if (pars.talkative) {
-                std::cout << t << '\n';
-                logfile << t << '\n';
-            }
+            if (pars.talkative) std::cout << t << '\n';
 
             // Life cycle of the metapopulation
             metapop.disperse(pars);
@@ -84,8 +82,7 @@ int simulate(const std::vector<std::string> &args)
 
                 // Save them to files
                 const size_t tu = static_cast<size_t>(t);
-                if (pars.datsave)
-                    printer.print(tu, collector, metapop);
+                if (pars.datsave) printer.print(tu, collector, metapop);
 
             }
 
@@ -99,14 +96,11 @@ int simulate(const std::vector<std::string> &args)
             // Is the population still there?
             if (metapop.isextinct()) {
                 std::cout << "The population went extinct at t = " << t << '\n';
-                logfile << "The population went extinct at t = " << t << '\n';
                 break;
             }
         }
 
         std::cout << "Simulation ended.\n";
-        logfile << "Simulation ended.\n";
-        logfile.close();
 
         return 0;
     }

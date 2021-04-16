@@ -95,6 +95,7 @@ General simulation parameters:
 * `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into a file (see below)
 * `archload` (0) sets whether the genetic architecture of the simulation should be loaded from a file instead of generated anew
 * `parsave` (1) sets whether to save the parameters of the simulation run to file, including the random seed
+* `logsave` (0) sets whether the output to prompt should be redirected to a log file (set by `lofgile`)
 * `archfile` (architecture.txt) is the name of the architecture file where the details of the genetic architecture must be loaded from, if `archload` is 1
 * `parfile` (paramlog.txt) is the name of the output parameter file where to save the parameters of the current simulation, if `parsave` is 1. This can be used e.g. to retrieve a random seed
 * `orderfile` (whattosave.txt) is the name of the order file where the list of variables to save is specified, if `choosewhattosave` is 1
