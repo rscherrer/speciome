@@ -1,34 +1,34 @@
 #include "Printer.h"
 
 // Constructor
-Printer::Printer(const std::string &orderfile, const bool &datsave) :
+Printer::Printer(const std::string &orderfile) :
     filenames(whattosave(orderfile)),
     files({ })
 {
-
-    if (datsave) {
-
-        files.reserve(filenames.size());
-
-        // Open files
-        for (size_t f = 0u; f < filenames.size(); ++f) {
-
-            const std::string filename = filenames[f] + ".dat";
-            Stream out(new std::ofstream);
-            out->open(filename.c_str(), std::ios::binary);
-            if (!out->is_open()) {
-                std::string msg = "Unable to open output file " + filename;
-                throw std::runtime_error(msg);
-            }
-            files.push_back(out);
-        }
-
-    }
 
 }
 
 Printer::~Printer() {
     shutdown();
+}
+
+void Printer::open() {
+
+    files.reserve(filenames.size());
+
+    // Open files
+    for (size_t f = 0u; f < filenames.size(); ++f) {
+
+        const std::string filename = filenames[f] + ".dat";
+        Stream out(new std::ofstream);
+        out->open(filename.c_str(), std::ios::binary);
+        if (!out->is_open()) {
+            std::string msg = "Unable to open output file " + filename;
+            throw std::runtime_error(msg);
+        }
+        files.push_back(out);
+    }
+
 }
 
 void Printer::shutdown()

@@ -31,7 +31,8 @@ BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
   GenArch arch = GenArch(pars);
   MetaPop metapop = MetaPop(pars, arch);
   Collector collector = Collector(arch);
-  Printer printer = Printer("", true);
+  Printer printer = Printer();
+  printer.open();
 
   size_t cumulsize = 0u;
   size_t lastgenfirst = 0u;

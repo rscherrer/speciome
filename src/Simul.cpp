@@ -46,7 +46,8 @@ int simulate(const std::vector<std::string> &args)
 
         // Create a printer
         const std::string order = pars.choosewhattosave ? pars.orderfile : "";
-        Printer printer = Printer(order, pars.datsave);
+        Printer printer = Printer(order);
+        if (pars.record && pars.datsave) printer.open();
 
         // Open the freezer
         Freezer freezer = Freezer();
