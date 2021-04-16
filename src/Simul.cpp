@@ -47,11 +47,11 @@ int simulate(const std::vector<std::string> &args)
         // Create a printer
         const std::string order = pars.choosewhattosave ? pars.orderfile : "";
         Printer printer = Printer(order);
-        if (pars.record && pars.datsave) printer.open();
+        if (pars.datsave) printer.open();
 
         // Open the freezer
         Freezer freezer = Freezer();
-        if (pars.record && pars.gensave) {
+        if (pars.gensave) {
 
             freezer.openFreezer(pars.freezerfile);
             freezer.openLoci(pars.locifile);
@@ -76,19 +76,19 @@ int simulate(const std::vector<std::string> &args)
             metapop.consume(pars);
 
             // Analyze the metapopulation if needed
-            if (pars.record && timetosave(t, pars.tsave)) {
+            if (pars.datsave && timetosave(t, pars.tsave)) {
 
                 // Collect stats
                 collector.analyze(metapop, pars, arch);
 
                 // Save them to files
                 const size_t tu = static_cast<size_t>(t);
-                if (pars.datsave) printer.print(tu, collector, metapop);
+                printer.print(tu, collector, metapop);
 
             }
 
             // Save whole genomes if needed (space-consuming)
-            if (pars.record && pars.gensave && timetofreeze(t, pars.tfreeze))
+            if (pars.gensave && timetofreeze(t, pars.tfreeze))
                 freezer.freeze(metapop, pars.nloci);
 
             metapop.reproduce(pars, arch);

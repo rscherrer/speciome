@@ -71,9 +71,7 @@ struct Param {
     int tend;
     int tsave;
     int tfreeze;
-    int tpedigree;
     bool talkative;
-    bool record;
     bool datsave;
     bool choosewhattosave;
     bool gensave;

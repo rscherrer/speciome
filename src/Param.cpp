@@ -40,9 +40,7 @@ Param::Param() :
     tend(10),
     tsave(10),
     tfreeze(100),
-    tpedigree(15000),
     talkative(true),
-    record(true),
     datsave(true),
     choosewhattosave(false),
     gensave(false),
@@ -141,9 +139,7 @@ void Param::import(std::ifstream &file)
         else if (input == "tend") file >> tend;
         else if (input == "tsave") file >> tsave;
         else if (input == "tfreeze") file >> tfreeze;
-        else if (input == "tpedigree") file >> tpedigree;
         else if (input == "talkative") file >> talkative;
-        else if (input == "record") file >> record;
         else if (input == "datsave") file >> datsave;
         else if (input == "choosewhattosave") file >> choosewhattosave;
         else if (input == "gensave") file >> gensave;
@@ -339,9 +335,7 @@ void Param::write(std::ofstream &file) const
     file << "tend " << tend << '\n';
     file << "tsave " << tsave << '\n';
     file << "tfreeze " << tfreeze << '\n';
-    file << "tpedigree " << tpedigree << '\n';
     file << "talkative " << talkative << '\n';
-    file << "record " << record << '\n';
     file << "datsave " << datsave << '\n';
     file << "choosewhattosave " << choosewhattosave << '\n';
     file << "gensave " << gensave << '\n';

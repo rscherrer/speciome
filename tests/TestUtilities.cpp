@@ -107,7 +107,6 @@ void tst::makeValidParamFile()
   << "tburnin" << '\t' << 5 << '\n'
   << "tend" << '\t' << 2 << '\n'
   << "tsave" << '\t' << 1 << '\n'
-  << "record" << '\t' << 1 << '\n'
   << "seed" << '\t' << 42 << '\n'
   << "ntrials" << '\t' << 20 << '\n';
 
