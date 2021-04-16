@@ -48,9 +48,14 @@ int simulate(const std::vector<std::string> &args)
         const std::string order = pars.choosewhattosave ? pars.orderfile : "";
         Printer printer = Printer(order, pars.datsave);
 
-        // Open the freezer if needed
-        Freezer freezer = Freezer(pars.freezerfile, pars.locifile,
-         pars.gensave);
+        // Open the freezer
+        Freezer freezer = Freezer();
+        if (pars.gensave) {
+
+            freezer.openFreezer(pars.freezerfile);
+            freezer.openLoci(pars.locifile);
+
+        }
 
         // Open a log file
         std::ofstream logfile(pars.logfile);

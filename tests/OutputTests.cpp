@@ -83,7 +83,8 @@ BOOST_AUTO_TEST_CASE(SaveOneGenome)
     Param pars = Param();
     pars.allfreq = 0.9;
     GenArch arch = GenArch(pars);
-    Freezer freezer = Freezer("freezer_test.dat");
+    Freezer freezer = Freezer();
+    freezer.openFreezer("freezer_test.dat");
 
     // Save the full genome of one individual
     Individual ind(Individual(pars, arch));
@@ -123,7 +124,9 @@ BOOST_AUTO_TEST_CASE(SaveAllGenomes)
     pars.allfreq = 0.9;
     pars.demesizes = { 10u, 0u };
     GenArch arch = GenArch(pars);
-    Freezer freezer = Freezer("freezer_test2.dat", "locivalues2.dat");
+    Freezer freezer = Freezer();
+    freezer.openFreezer("freezer_test2.dat");
+    freezer.openLoci("locivalues2.dat");
     MetaPop pop(MetaPop(pars, arch));
 
     // Save the genomes
