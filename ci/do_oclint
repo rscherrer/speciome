@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script assumes that main.cpp is in the root folder
+# otherwise Travis will crash
+
 cpp_files=`ls *.cpp | egrep -v "^.*_test\.cpp$"`
 h_files=`ls *.h`
 
