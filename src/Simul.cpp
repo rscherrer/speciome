@@ -59,7 +59,8 @@ int simulate(const std::vector<std::string> &args)
         }
 
         // Redirect output to log file if needed
-        if (pars.logsave) std::freopen(pars.logfile.c_str(), "w", stdout);
+        if (pars.logsave)
+            pars.logsave = std::freopen(pars.logfile.c_str(), "w", stdout);
 
         // Open a log file
         std::cout << "Simulation started.\n";
@@ -102,6 +103,7 @@ int simulate(const std::vector<std::string> &args)
         }
 
         std::cout << "Simulation ended.\n";
+        std::fclose(stdout);
 
         return 0;
     }
