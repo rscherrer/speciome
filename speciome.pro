@@ -2,7 +2,7 @@
 include(speciome.pri)
 SOURCES += main.cpp
 
-# C++20
+# C++14
 CONFIG += c++14
 QMAKE_CXXFLAGS += -std=c++14
 QMAKE_CXXFLAGS_RELEASE += -O3
