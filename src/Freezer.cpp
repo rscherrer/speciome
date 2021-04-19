@@ -1,28 +1,10 @@
 #include "Freezer.h"
 
 // Constructor
-Freezer::Freezer(const std::string &freezername, const std::string &lociname,
- const bool &gensave) :
+Freezer::Freezer() :
     freezer(new std::ofstream),
     locivalues(new std::ofstream)
 {
-
-    if (gensave) {
-
-        // Open the freezer
-        freezer->open(freezername, std::ios::binary);
-        if (!freezer->is_open()) {
-            std::string msg = "Unable to open output freezer file";
-            throw std::runtime_error(msg);
-        }
-
-        locivalues->open(lociname, std::ios::binary);
-        if (!locivalues->is_open()) {
-            std::string msg = "Unable to open loci values file";
-            throw std::runtime_error(msg);
-        }
-
-    }
 
 }
 
@@ -39,6 +21,29 @@ void Freezer::shutdown() {
 
 // Member functions
 //-----------------
+
+// Open the freezer file
+void Freezer::openFreezer(const std::string &freezername) {
+
+    freezer->open(freezername, std::ios::binary);
+    if (!freezer->is_open()) {
+        std::string msg = "Unable to open output freezer file";
+        throw std::runtime_error(msg);
+    }
+
+
+}
+
+// Open the locus file
+void Freezer::openLoci(const std::string &lociname) {
+
+    locivalues->open(lociname, std::ios::binary);
+    if (!locivalues->is_open()) {
+        std::string msg = "Unable to open loci values file";
+        throw std::runtime_error(msg);
+    }
+
+}
 
 // Save the genomes of all individuals in the population
 void Freezer::freeze(const MetaPop &pop, const size_t &nloci) {

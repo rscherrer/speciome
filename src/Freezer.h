@@ -21,10 +21,11 @@ class Freezer
 
 public:
 
-    Freezer(const std::string& = "freezer.dat",
-     const std::string& = "locivalues.dat", const bool& = true);
+    Freezer();
     ~Freezer();
 
+    void openFreezer(const std::string&);
+    void openLoci(const std::string&);
     void freeze(const MetaPop&, const size_t&);
     void saveIndivGenome(const Individual&, const size_t&);
     void shutdown();

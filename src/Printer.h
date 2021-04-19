@@ -14,9 +14,10 @@ class Printer
 
 public:
 
-    Printer(const std::string& = "", const bool& = true);
+    Printer(const std::string& = "");
     ~Printer();
 
+    void open();
     void print(const size_t&, const Collector&, const MetaPop&);
     void shutdown();
 

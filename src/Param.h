@@ -71,23 +71,20 @@ struct Param {
     int tend;
     int tsave;
     int tfreeze;
-    int tpedigree;
     bool talkative;
-    bool record;
     bool datsave;
     bool choosewhattosave;
     bool gensave;
     bool archsave;
     bool archload;
     bool parsave;
-    bool pedigreesave;
+    bool logsave;
     std::string archfile;
     std::string parfile;
     std::string orderfile;
     std::string logfile;
     std::string freezerfile;
     std::string locifile;
-    std::string pedigreefile;
     size_t seed;
     size_t ntrials;
 
