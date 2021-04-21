@@ -169,6 +169,8 @@ Whole genomes are encoded in the freezer file in a different way from other vari
 
 Genetic values across the genome for each individual are stored in the locus file as floating point numbers encoded into a binary file, just as the other output variables, but with one value per locus per individual, per time point. 
 
+**Important:** the functions in the R package `speciomer` that deal with individual whole genomes are expecting to know how many individuals lived at each time point where whole genomes were saved (to be able to assign time points to individuals). This means that to use them, you need to have for each recorded time point in the `freezerfile` and the `locifile`, you need a corresponding entry in the files `time.dat` and `population_size.dat` (you can have more time points recorded in the latter two, they will just be discarded when reading whole genomes). To do that, make sure you set `datsave 1`, that these two `.dat` files are in your `orderfile` (only if `choosewhattosave 1`), and that `tsave` and `tfreeze` overlap. For example, you can save data every 2 generations (`tsave 2`) but save whole genomes only every 8 generations
+
 ## Disclaimer
 
 This simulation program was used to get insights into the effect of the genetic architecture on the process of speciation. It was not designed as a statistical inference package or a data processing tool, although its simulations could in theory be used for training machine learning algorithms to recognize various evolutionary scenarios.
