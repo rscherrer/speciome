@@ -119,7 +119,7 @@ The following fields have as many entries as there are loci in the genome, and e
 * `effects`: the additive effect sizes of all loci (e.g. `effects -0.1 0.1 -0.1 0.1 -0.1 0.1`)
 * `dominances`: the dominance coefficients of all loci (e.g. `dominances 0.1 0.2 0.3 0.4 0.5`)
 
-The rest of the architecture file is reserved for information about the three gene networks. For each gene network, start with the keyword `network` followed by the index of its trait, and the number of edges in that network (e.g. `network 0 100` for an ecological gene network with 100 edges). Follwing this, the program will expect three fields, each with as many entries as edges in the network (so one entry per edge):
+The rest of the architecture file is reserved for information about the three gene networks. For each gene network, start with the keyword `network` followed by the index of its trait, and the number of edges in that network (e.g. `network 0 100` for an ecological gene network with 100 edges). Following this, the program will expect three fields, each with as many entries as edges in the network (so one entry per edge):
 
 * `weights`: the interaction weights of all edges
 * `edge0`: the locus index of the first partner for all edges
