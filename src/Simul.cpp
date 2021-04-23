@@ -66,7 +66,7 @@ int simulate(const std::vector<std::string> &args)
         std::cout << "Simulation started.\n";
 
         // Loop through time
-        for (int t = -pars.tburnin; t < pars.tend; ++t) {
+        for (int t = -pars.tburnin; t <= pars.tend; ++t) {
 
             if (t == 0) metapop.exitburnin();
 
