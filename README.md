@@ -86,6 +86,7 @@ General simulation parameters:
 * `tburnin` (0) is the duration of the burn-in period, in generations
 * `tend` (10) is the number of generations to simulate (after burn-in)
 * `tsave` (10) is the frequency at which to record the data
+* `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
 * `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
 * `datsave` (1) sets whether to save the recorded variables to files
