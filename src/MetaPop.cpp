@@ -81,6 +81,7 @@ void MetaPop::disperse(const Param &p)
 
     }
     */
+
     else {
 
         // Use bernoulli if common
@@ -266,6 +267,8 @@ void MetaPop::reproduce(const Param &p, const GenArch &arch)
 
             std::vector<double> probs = fit;
 
+            const size_t ecof = population[f].getEcotype();
+
             // While the season is not over and mating hasn't occured
             while (t) {
 
@@ -274,6 +277,12 @@ void MetaPop::reproduce(const Param &p, const GenArch &arch)
                 // Sample a male and evaluate
                 const size_t idm = getmale(rnd::rng);
                 const size_t m = males[hab][idm];
+
+                // Skip if male and female are incompatible species
+                const size_t ecom = population[m].getEcotype();
+                if (iscomplete && ecom != ecof)
+                    continue;
+
                 const double xm = population[m].getTraitValue(0u);
                 auto ismating = rnd::bernoulli(population[f].mate(xm, p));
 
@@ -328,6 +337,11 @@ void MetaPop::survive(const Param &p)
 void MetaPop::exitburnin()
 {
     isburnin = false;
+}
+
+void MetaPop::complete()
+{
+    iscomplete = true;
 }
 
 // Getters

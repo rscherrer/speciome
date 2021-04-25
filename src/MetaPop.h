@@ -23,6 +23,7 @@ public:
     MetaPop(const Param &pars, const GenArch &arch) :
         population(populate(pars, arch)),
         isburnin(pars.tburnin > 0),
+        iscomplete(false),
         resources(utl::zeros(2u, 2u)),
         sexcounts(utl::uzeros(2u, 2u))
     {
@@ -33,6 +34,7 @@ public:
 
     void cycle(const Param&, const GenArch&);
     void exitburnin();
+    void complete(); // complete speciation (no more reproduction allowed)
     bool isextinct() const;
 
     void disperse(const Param&);
@@ -68,6 +70,7 @@ private:
 
     std::vector<Individual> population;
     bool isburnin;
+    bool iscomplete;
 
     std::vector<std::vector<double> > resources; // per habitat per resource
     std::vector<std::vector<size_t> > sexcounts; // per habitat per sex

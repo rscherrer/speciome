@@ -39,6 +39,7 @@ Param::Param() :
     tburnin(0),
     tend(10),
     tsave(10),
+    tcomplete(1000000),
     talkative(true),
     datsave(true),
     burninsave(false),
@@ -138,6 +139,7 @@ void Param::import(std::ifstream &file)
         else if (input == "tburnin") file >> tburnin;
         else if (input == "tend") file >> tend;
         else if (input == "tsave") file >> tsave;
+        else if (input == "tcomplete") file >> tcomplete;
         else if (input == "talkative") file >> talkative;
         else if (input == "datsave") file >> datsave;
         else if (input == "burninsave") file >> burninsave;
@@ -332,6 +334,7 @@ void Param::write(std::ofstream &file) const
     file << "tburnin " << tburnin << '\n';
     file << "tend " << tend << '\n';
     file << "tsave " << tsave << '\n';
+    file << "tcomplete " << tcomplete << '\n';
     file << "talkative " << talkative << '\n';
     file << "datsave " << datsave << '\n';
     file << "burninsave " << burninsave << '\n';
