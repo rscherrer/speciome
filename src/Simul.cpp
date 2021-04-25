@@ -105,7 +105,7 @@ int simulate(const std::vector<std::string> &args)
         }
 
         std::cout << "Simulation ended.\n";
-        std::fclose(stdout);
+        if (pars.logsave) std::fclose(stdout);
 
         return 0;
     }
