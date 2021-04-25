@@ -5,16 +5,6 @@ bool timetosave(const int &t, const int &tsave)
     return t >= 0 && t % tsave == 0;
 }
 
-bool timetofreeze(const int &t, const int &tfreeze)
-{
-    if (tfreeze == 0 && t == 0) return true;
-    return t > 0 && t % tfreeze == 0;
-
-    // Note: the modulo of zero by some number is always zero, so make sure
-    // to set t > 0 as a condition otherwise time point zero will always be
-    // considered freezing time
-}
-
 int simulate(const std::vector<std::string> &args)
 {
 
@@ -66,7 +56,7 @@ int simulate(const std::vector<std::string> &args)
         std::cout << "Simulation started.\n";
 
         // Loop through time
-        for (int t = -pars.tburnin; t < pars.tend; ++t) {
+        for (int t = -pars.tburnin; t <= pars.tend; ++t) {
 
             if (t == 0) metapop.exitburnin();
 
@@ -86,11 +76,10 @@ int simulate(const std::vector<std::string> &args)
                 const size_t tu = static_cast<size_t>(t);
                 printer.print(tu, collector, metapop);
 
-            }
+                // Save whole genomes if needed (space-consuming)
+                if (pars.gensave) freezer.freeze(metapop, pars.nloci);
 
-            // Save whole genomes if needed (space-consuming)
-            if (pars.gensave && timetofreeze(t, pars.tfreeze))
-                freezer.freeze(metapop, pars.nloci);
+            }
 
             metapop.reproduce(pars, arch);
             metapop.survive(pars);
@@ -103,7 +92,7 @@ int simulate(const std::vector<std::string> &args)
         }
 
         std::cout << "Simulation ended.\n";
-        std::fclose(stdout);
+        if (pars.logsave) std::fclose(stdout);
 
         return 0;
     }

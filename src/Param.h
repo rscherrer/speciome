@@ -70,7 +70,6 @@ struct Param {
     int tburnin;
     int tend;
     int tsave;
-    int tfreeze;
     bool talkative;
     bool datsave;
     bool choosewhattosave;
