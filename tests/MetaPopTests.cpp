@@ -1,4 +1,5 @@
 #include "src/MetaPop.h"
+#include "src/Collector.h"
 #include "src/Utilities.h"
 #include <boost/test/unit_test.hpp>
 

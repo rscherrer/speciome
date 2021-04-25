@@ -53,7 +53,11 @@ int simulate(const std::vector<std::string> &args)
         // Loop through time
         for (int t = -pars.tburnin; t <= pars.tend; ++t) {
 
+            // Exit the burnin if needed
             if (t == 0) metapop.exitburnin();
+
+            // Force-complete speciation if needed
+            if (t == pars.tcomplete) metapop.complete();
 
             if (pars.talkative) std::cout << t << '\n';
 
