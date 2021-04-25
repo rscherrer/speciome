@@ -190,6 +190,12 @@ void utl::correct(double &x, const double &x0, const double &d)
     x = x < x0 + d ? x0 : x;
 }
 
+// Convert integer to double
+double utl::int2dbl(const int &x)
+{
+    return static_cast<double>(x);
+}
+
 // Convert unsigned integer to double
 double utl::size2dbl(const size_t &x)
 {

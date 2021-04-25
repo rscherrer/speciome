@@ -89,6 +89,7 @@ General simulation parameters:
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
 * `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
 * `datsave` (1) sets whether to save the recorded variables to files
+* `burninsave` (0) sets whether to save data during the burn-in phase too (time points belonging to the burn-in are negative)
 * `gensave` (0) is either 0 or 1 and sets whether whole genomes should be saved every `tfreeze` generations
 * `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into a file (see below)
 * `archload` (0) sets whether the genetic architecture of the simulation should be loaded from a file instead of generated anew

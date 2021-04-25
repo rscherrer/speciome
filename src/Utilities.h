@@ -29,6 +29,7 @@ namespace utl
     std::vector<std::vector<double> > dividemat(
      const std::vector<std::vector<double> >&,
       const std::vector<std::vector<size_t> >&);
+    double int2dbl(const int&);
     double size2dbl(const size_t&);
     size_t dbl2size(const double&);
     double round(const double&, const size_t&);
