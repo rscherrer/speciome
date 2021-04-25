@@ -178,22 +178,6 @@ void tst::makeInvalidParamValue2()
   file.close();
 }
 
-void tst::makeParamFileEmptyFreezer()
-{
-    std::ofstream file;
-    file.open("paramfileemptyfreezer.txt");
-    if (!file.is_open())
-        std::cout << "Unable to open empty freezer parameter file.\n";
-
-    file << "freezerfile" << '\t' << "empty_freezer.dat" << '\n'
-         << "gensave" << '\t' << 1u << '\n'
-         << "tend" << '\t' << 10u << '\n'
-         << "tsave" << '\t' << 10u << '\n'
-         << "tfreeze" << '\t' << 100u << '\n';
-
-    file.close();
-}
-
 size_t tst::getFileSize(const std::string &filename) {
 
     std::ifstream input(filename, std::ios::binary);

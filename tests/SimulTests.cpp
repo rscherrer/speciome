@@ -52,13 +52,3 @@ BOOST_AUTO_TEST_CASE(testAbuseInvalidParamValue)
   tst::makeInvalidParamValue2();
   BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue2.txt"}), 1);
 }
-
-BOOST_AUTO_TEST_CASE(testUseEmptyFreezer)
-{
-
-    tst::makeParamFileEmptyFreezer();
-    simulate({"EGS_test", "paramfileemptyfreezer.txt"});
-    BOOST_CHECK(tst::isFileEmpty("empty_freezer.dat"));
-
-}
-
