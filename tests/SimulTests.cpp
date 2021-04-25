@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(testUseNoArgs)
 BOOST_AUTO_TEST_CASE(testAbuseTooManyArgs)
 {
   // std::clog << "Testing run with too many arguments...\n";
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "arg1", "arg2" }), 0);
+  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "arg1", "arg2" }), 1);
 }
 
 BOOST_AUTO_TEST_CASE(testAbuseInvalidFilename)
