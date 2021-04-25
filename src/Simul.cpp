@@ -86,7 +86,7 @@ int simulate(const std::vector<std::string> &args)
                 const size_t tu = static_cast<size_t>(t);
                 printer.print(tu, collector, metapop);
 
-                if (t == 0) freezer.freeze(metapop, pars.nloci);
+                //if (t == 0) freezer.freeze(metapop, pars.nloci);
 
             }
 
