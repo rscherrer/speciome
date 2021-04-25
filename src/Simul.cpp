@@ -1,10 +1,5 @@
 #include "Simul.h"
 
-bool timetosave(const int &t, const int &tsave)
-{
-    return t >= 0 && t % tsave == 0;
-}
-
 int simulate(const std::vector<std::string> &args)
 {
 
@@ -66,15 +61,16 @@ int simulate(const std::vector<std::string> &args)
             metapop.disperse(pars);
             metapop.consume(pars);
 
+            const bool timetosave = t % pars.tsave;
+
             // Analyze the metapopulation if needed
-            if (pars.datsave && timetosave(t, pars.tsave)) {
+            if (pars.datsave && (t >= 0 || pars.burninsave) && timetosave) {
 
                 // Collect stats
                 collector.analyze(metapop, pars, arch);
 
                 // Save them to files
-                const size_t tu = static_cast<size_t>(t);
-                printer.print(tu, collector, metapop);
+                printer.print(t, collector, metapop);
 
                 // Save whole genomes if needed (space-consuming)
                 if (pars.gensave) freezer.freeze(metapop, pars.nloci);

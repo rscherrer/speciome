@@ -38,13 +38,13 @@ void Printer::shutdown()
         files[f]->close();
 }
 
-void Printer::print(const size_t &t, const Collector &c, const MetaPop &m)
+void Printer::print(const int &t, const Collector &c, const MetaPop &m)
 {
 
     for (size_t f = 0u; f < filenames.size(); ++f) {
 
         if (filenames[f] == "time")
-            stf::write(utl::size2dbl(t), files[f]);
+            stf::write(utl::int2dbl(t), files[f]);
         else if (filenames[f] == "population_size")
             stf::write(utl::size2dbl(c.counts[2u][2u]), files[f]);
         else if (filenames[f] == "ecotype_size")

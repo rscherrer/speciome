@@ -18,7 +18,7 @@ public:
     ~Printer();
 
     void open();
-    void print(const size_t&, const Collector&, const MetaPop&);
+    void print(const int&, const Collector&, const MetaPop&);
     void shutdown();
 
 private:

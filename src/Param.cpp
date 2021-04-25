@@ -41,6 +41,7 @@ Param::Param() :
     tsave(10),
     talkative(true),
     datsave(true),
+    burninsave(false),
     choosewhattosave(false),
     gensave(false),
     archsave(false),
@@ -139,6 +140,7 @@ void Param::import(std::ifstream &file)
         else if (input == "tsave") file >> tsave;
         else if (input == "talkative") file >> talkative;
         else if (input == "datsave") file >> datsave;
+        else if (input == "burninsave") file >> burninsave;
         else if (input == "choosewhattosave") file >> choosewhattosave;
         else if (input == "gensave") file >> gensave;
         else if (input == "archsave") file >> archsave;
@@ -332,6 +334,7 @@ void Param::write(std::ofstream &file) const
     file << "tsave " << tsave << '\n';
     file << "talkative " << talkative << '\n';
     file << "datsave " << datsave << '\n';
+    file << "burninsave " << burninsave << '\n';
     file << "choosewhattosave " << choosewhattosave << '\n';
     file << "gensave " << gensave << '\n';
     file << "archsave " << archsave << '\n';

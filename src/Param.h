@@ -72,6 +72,7 @@ struct Param {
     int tsave;
     bool talkative;
     bool datsave;
+    bool burninsave;
     bool choosewhattosave;
     bool gensave;
     bool archsave;

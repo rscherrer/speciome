@@ -76,6 +76,44 @@ BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
 
 }
 
+// Test that burnin is saved correctly (negative time values)
+BOOST_AUTO_TEST_CASE(SaveBurnin)
+{
+
+    Param pars;
+    pars.tburnin = 10;
+    pars.tend = 10;
+
+    GenArch arch = GenArch(pars);
+    MetaPop metapop = MetaPop(pars, arch);
+    Collector collector = Collector(arch);
+    Printer printer = Printer();
+    printer.open();
+
+    // This should save also during the burnin
+    for (int t = -pars.tburnin; t <= pars.tend; ++t) {
+
+        if (t == 0) metapop.exitburnin();
+
+        // Collect stats
+        collector.analyze(metapop, pars, arch);
+
+        // Save them to files
+        printer.print(t, collector, metapop);
+
+    }
+
+    printer.shutdown();
+
+    // Read output files
+    std::vector<double> time = tst::readfile("time.dat");
+
+    // Check that the first time point saved is negative (burnin)
+    BOOST_CHECK(time[0u] < 0.0);
+
+}
+
+
 BOOST_AUTO_TEST_CASE(SaveOneGenome)
 {
 
