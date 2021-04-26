@@ -32,7 +32,6 @@ public:
 
     ~MetaPop() {}
 
-    void cycle(const Param&, const GenArch&);
     void exitburnin();
     void complete(); // complete speciation (no more reproduction allowed)
     bool isextinct() const;

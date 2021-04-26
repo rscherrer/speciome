@@ -24,26 +24,6 @@ std::vector<Individual> MetaPop::populate(const Param &p, const GenArch &arch)
 
 }
 
-
-// Life cycle of the population
-
-void MetaPop::cycle(const Param &p, const GenArch &arch)
-{
-
-    // Dispersal
-    if (!isburnin) disperse(p);
-
-    // Consumption
-    consume(p);
-
-    // Reproduction
-    reproduce(p, arch);
-
-    // Survival
-    survive(p);
-
-}
-
 void MetaPop::disperse(const Param &p)
 {
     // Sample migrants across the population

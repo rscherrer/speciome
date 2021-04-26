@@ -6,49 +6,58 @@
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 
-  // Black box testing of the proper run of the main function
+// Black box (use and abuse) testing of the proper run of the main function
 
-  // Check that the program can run without arguments
+// Check that the program can run without arguments
 BOOST_AUTO_TEST_CASE(testUseNoArgs)
 {
-  // std::clog << "Testing run without arguments...\n";
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test" }), 0);
+
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test" }), 0);
+
 }
 
-  // Check that the program cannot run with more than one argument
+// Check that the program cannot run with more than one argument
 BOOST_AUTO_TEST_CASE(testAbuseTooManyArgs)
 {
-  // std::clog << "Testing run with too many arguments...\n";
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "arg1", "arg2" }), 1);
+
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test", "arg1", "arg2" }), 1);
+
 }
 
+// Invalid file name
 BOOST_AUTO_TEST_CASE(testAbuseInvalidFilename)
 {
-  // std::clog << "Testing run with invalid parameter file...\n";
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "nonsense.txt" }), 1);
+
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test", "nonsense.txt" }), 1);
+
 }
 
-
+// Valid file name
 BOOST_AUTO_TEST_CASE(testUseValidFilename)
 {
-  // std::clog << "Testing run with valid parameter file...\n";
-  tst::makeValidParamFile();
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "validparamfile.txt" }), 0);
+
+    tst::makeValidParamFile();
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test", "validparamfile.txt" }), 0);
+
 }
 
-
+// Testing run with invalid parameter names
 BOOST_AUTO_TEST_CASE(testAbuseInvalidParamName)
 {
-  // std::clog << "Testing run with invalid parameter names...\n";
-  tst::makeInvalidParamName();
-  BOOST_CHECK_EQUAL(simulate({ "speciome_test", "invalidparamname.txt" }), 1);
+
+    tst::makeInvalidParamName();
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test", "invalidparamname.txt" }), 1);
+
 }
 
+// Testing run with invalid parameter values
 BOOST_AUTO_TEST_CASE(testAbuseInvalidParamValue)
 {
-  // std::clog << "Testing run with invalid parameter values...\n";
-  tst::makeInvalidParamValue();
-  BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue.txt"}), 1);
-  tst::makeInvalidParamValue2();
-  BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue2.txt"}), 1);
+
+    tst::makeInvalidParamValue();
+    BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue.txt"}), 1);
+
+    tst::makeInvalidParamValue2();
+    BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue2.txt"}), 1);
+
 }
