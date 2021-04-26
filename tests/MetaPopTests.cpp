@@ -331,3 +331,34 @@ BOOST_AUTO_TEST_CASE(KnownInitialGeneticDiversityFromAlleleFreq)
     BOOST_CHECK_EQUAL(pop1.getZygosity(10u, 1u, pars.nloci), 2u);
 
 }
+
+// Test speciation completion by separating the sexes in the two species
+BOOST_AUTO_TEST_CASE(SpeciationCompletion)
+{
+
+    Param pars = Param();
+    pars.demesizes = { 10u, 10u };
+
+    const GenArch arch = GenArch(pars);
+    MetaPop metapop = MetaPop(pars, arch);
+    metapop.exitburnin();
+
+    // Spatially separate the two ecotypes
+    metapop.resetTraits(0u, 0u, -1.0, pars); // only -1 in habitat 0
+    metapop.resetTraits(0u, 1u, 1.0, pars); // only +1 in habitat 1
+
+    // Separate the sexes between the two habitats / ecotypes
+    metapop.resetGenders(0u, false);
+    metapop.resetGenders(1u, true);
+
+    // Impose reproductive isolation
+    metapop.complete();
+
+    // Try to make them reproduce
+    metapop.consume(pars);
+    metapop.reproduce(pars, arch);
+
+    // Check that no babies were made, pop size should stay unchanged
+    BOOST_CHECK_EQUAL(metapop.getSize(), 20u);
+
+}

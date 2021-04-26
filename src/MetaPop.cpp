@@ -450,6 +450,7 @@ void MetaPop::resetTraits(const size_t &trait, const double &x, const Param &p)
         population[i].resetTrait(trait, x, p);
     }
 }
+
 void MetaPop::resetTraits(const size_t &trait, const size_t &h, const double &x,
  const Param &p)
 {
@@ -458,9 +459,18 @@ void MetaPop::resetTraits(const size_t &trait, const size_t &h, const double &x,
             population[i].resetTrait(trait, x, p);
     }
 }
+
 void MetaPop::resetGenders(const bool &sex)
 {
     for (size_t i = 0u; i < population.size(); ++i) {
         population[i].resetGender(sex);
+    }
+}
+
+void MetaPop::resetGenders(const size_t &h, const bool &sex)
+{
+    for (size_t i = 0u; i < population.size(); ++i) {
+        if (population[i].getHabitat() == h)
+            population[i].resetGender(sex);
     }
 }

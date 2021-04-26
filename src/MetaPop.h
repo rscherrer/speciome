@@ -62,6 +62,7 @@ public:
     void resetTraits(const size_t&, const double&, const Param&);
     void resetTraits(const size_t&, const size_t&, const double&, const Param&);
     void resetGenders(const bool&);
+    void resetGenders(const size_t&, const bool&);
 
 private:
 
