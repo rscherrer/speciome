@@ -64,7 +64,7 @@ int simulate(const std::vector<std::string> &args)
             // Life cycle of the metapopulation
             metapop.consume(pars);
 
-            const bool timetosave = t % pars.tsave;
+            const bool timetosave = t % pars.tsave == 0;
 
             // Analyze the metapopulation if needed
             if (pars.datsave && (t >= 0 || pars.burninsave) && timetosave) {

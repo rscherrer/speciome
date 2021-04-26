@@ -61,3 +61,18 @@ BOOST_AUTO_TEST_CASE(testAbuseInvalidParamValue)
     BOOST_CHECK_EQUAL(simulate({"speciome_test", "invalidparamvalue2.txt"}), 1);
 
 }
+
+// Test frequency of data saving
+BOOST_AUTO_TEST_CASE(DataSavingFrequency)
+{
+
+    tst::makeValidParamFile2();
+    BOOST_CHECK_EQUAL(simulate({ "speciome_test", "validparamfile2.txt" }), 0);
+
+    // Read output files
+    std::vector<double> time = tst::readfile("time.dat");
+
+    // Check that the right number of time points were saved (including 0)
+    BOOST_CHECK_EQUAL(time.size(), 3u);
+
+}
