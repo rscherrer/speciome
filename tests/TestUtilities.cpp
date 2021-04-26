@@ -113,6 +113,22 @@ void tst::makeValidParamFile()
   file.close();
 }
 
+void tst::makeValidParamFile2()
+{
+
+    std::ofstream file;
+    file.open("validparamfile2.txt");
+    if (!file.is_open())
+      std::cout << "Unable to open valid parameter test file.\n";
+
+    file << "tend" << '\t' << 10 << '\n'
+    << "tsave" << '\t' << 5 << '\n'
+    << "datsave" << '\t' << 1u << '\n';
+
+    file.close();
+
+}
+
 void tst::makeInvalidParamName()
 {
   std::ofstream file;

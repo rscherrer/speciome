@@ -32,7 +32,6 @@ public:
 
     ~MetaPop() {}
 
-    void cycle(const Param&, const GenArch&);
     void exitburnin();
     void complete(); // complete speciation (no more reproduction allowed)
     bool isextinct() const;
@@ -63,6 +62,7 @@ public:
     void resetTraits(const size_t&, const double&, const Param&);
     void resetTraits(const size_t&, const size_t&, const double&, const Param&);
     void resetGenders(const bool&);
+    void resetGenders(const size_t&, const bool&);
 
 private:
 
