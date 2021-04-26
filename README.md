@@ -159,7 +159,7 @@ The following variables are saved every `tsave` timepoint:
 * `genome_freqs`: the allele frequencies for each locus within each ecotype
 * `genome_hobs`: the observed heterozygosity for each locus within each ecotype
 * `network_corgen`, `network_corbreed`, `network_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
-* `network_avgi`, `network_avgj`: the expected epistatic variance in average effect (define that maybe?) of the first and second interacting loci, respectively, for each edge
+* `network_avgi`, `network_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `network_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `network_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
 * `individual_ecotype`, `individual_habitat`: the ecotype and habitat of each individual
 * `individual_trait`: the value of each trait for each individual
 * `individual_midparent`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
