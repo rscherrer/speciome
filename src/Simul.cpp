@@ -62,7 +62,6 @@ int simulate(const std::vector<std::string> &args)
             if (pars.talkative) std::cout << t << '\n';
 
             // Life cycle of the metapopulation
-            metapop.disperse(pars);
             metapop.consume(pars);
 
             const bool timetosave = t % pars.tsave;
@@ -89,6 +88,8 @@ int simulate(const std::vector<std::string> &args)
                 std::cout << "The population went extinct at t = " << t << '\n';
                 break;
             }
+
+            metapop.disperse(pars);
         }
 
         std::cout << "Simulation ended.\n";
