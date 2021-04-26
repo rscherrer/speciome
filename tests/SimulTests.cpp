@@ -9,7 +9,7 @@
 // Black box (use and abuse) testing of the proper run of the main function
 
 // Check that the program can run without arguments
-BOOST_AUTO_TEST_CASE(testUseNoArgs)
+BOOST_AUTO_TEST_CASE(TestUseNoArgs)
 {
 
     BOOST_CHECK_EQUAL(simulate({ "speciome_test" }), 0);
@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_CASE(testUseNoArgs)
 }
 
 // Check that the program cannot run with more than one argument
-BOOST_AUTO_TEST_CASE(testAbuseTooManyArgs)
+BOOST_AUTO_TEST_CASE(TestAbuseTooManyArgs)
 {
 
     BOOST_CHECK_EQUAL(simulate({ "speciome_test", "arg1", "arg2" }), 1);
@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(testAbuseTooManyArgs)
 }
 
 // Invalid file name
-BOOST_AUTO_TEST_CASE(testAbuseInvalidFilename)
+BOOST_AUTO_TEST_CASE(TestAbuseInvalidFilename)
 {
 
     BOOST_CHECK_EQUAL(simulate({ "speciome_test", "nonsense.txt" }), 1);
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(testAbuseInvalidFilename)
 }
 
 // Valid file name
-BOOST_AUTO_TEST_CASE(testUseValidFilename)
+BOOST_AUTO_TEST_CASE(TestUseValidFilename)
 {
 
     tst::makeValidParamFile();
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(testUseValidFilename)
 }
 
 // Testing run with invalid parameter names
-BOOST_AUTO_TEST_CASE(testAbuseInvalidParamName)
+BOOST_AUTO_TEST_CASE(TestAbuseInvalidParamName)
 {
 
     tst::makeInvalidParamName();
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(testAbuseInvalidParamName)
 }
 
 // Testing run with invalid parameter values
-BOOST_AUTO_TEST_CASE(testAbuseInvalidParamValue)
+BOOST_AUTO_TEST_CASE(TestAbuseInvalidParamValue)
 {
 
     tst::makeInvalidParamValue();
