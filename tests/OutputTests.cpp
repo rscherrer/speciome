@@ -66,8 +66,8 @@ BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
     BOOST_CHECK_EQUAL(ri.size(), 10u);
 
     // Read individual trait values and ecotypes
-    std::vector<double> popx = tst::readfile("individual_trait.dat");
-    std::vector<double> ecotypes = tst::readfile("individual_ecotype.dat");
+    std::vector<double> popx = tst::readfile("individual_traits.dat");
+    std::vector<double> ecotypes = tst::readfile("individual_ecotypes.dat");
 
     BOOST_CHECK_EQUAL(popx.size() / 3u, cumulsize);
 
