@@ -141,30 +141,30 @@ Many outputs can be saved through time in the simulation. To save the recorded d
 The following variables are saved every `tsave` timepoint:
 
 * `time`: every saved time point
-* `population_size`: total population size (so across both habitats)
-* `ecotype_size`: population size of each ecotype
-* `resources`: equilibrium resource concentration of each resource in each habitat
-* `means`: mean value of each trait across the whole population
-* `ecotype_means`: mean value of each trait in each ecotype
-* `varP`, `varG`, `varA`, `varD`, `varI`, `varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait
-* `varT`: variance in allele frequencies across loci coding for each trait
-* `Pst`, `Gst`, `Qst`, `Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
-* `Fst`: fixation index, or genetic differentiation between the two ecotypes, for each trait
+* `population_sizes`: total population size (so across both habitats)
+* `ecotype_population_sizes`: population size of each ecotype
+* `habitat_resources`: equilibrium resource concentration of each resource in each habitat
+* `trait_means`: mean value of each trait across the whole population
+* `ecotype_trait_means`: mean value of each trait in each ecotype
+* `trait_varP`, `trait_varG`, `trait_varA`, `trait_varD`, `trait_varI`, `trait_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait
+* `trait_varT`: variance in allele frequencies across loci coding for each trait
+* `trait_Pst`, `trait_Gst`, `trait_Qst`, `trait_Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
+* `trait_Fst`: fixation index, or genetic differentiation between the two ecotypes, for each trait
 * `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively
-* `genome_varP`, `genome_varG`, `genome_varA`, `genome_varD`, `genome_varI`, `genome_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
-* `genome_Pst`, `genome_Gst`, `genome_Qst`, `genome_Cst`, `genome_Fst`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
-* `genome_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
-* `genome_meang`: the mean genetic value of each locus in the whole population
-* `genome_freq`: the allele frequency (of the 1-allele) for each locus in the whole population
-* `genome_freqs`: the allele frequencies for each locus within each ecotype
-* `genome_hobs`: the observed heterozygosity for each locus within each ecotype
-* `network_corgen`, `network_corbreed`, `network_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
-* `network_avgi`, `network_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `network_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `network_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
-* `individual_ecotype`, `individual_habitat`: the ecotype and habitat of each individual
-* `individual_trait`: the value of each trait for each individual
-* `individual_midparent`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
+* `locus_varP`, `locus_varG`, `locus_varA`, `locus_varD`, `locus_varI`, `locus_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
+* `locus_Pst`, `locus_Gst`, `locus_Qst`, `locus_Cst`, `locus_Fst`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
+* `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
+* `locus_meang`: the mean genetic value of each locus in the whole population
+* `locus_freq`: the allele frequency (of the 1-allele) for each locus in the whole population
+* `locus_freqs`: the allele frequencies for each locus within each ecotype
+* `locus_hobs`: the observed heterozygosity for each locus within each ecotype
+* `edge_corgen`, `edge_corbreed`, `edge_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
+* `edge_avgi`, `edge_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
+* `individual_ecotypes`, `individual_habitats`: the ecotype and habitat of each individual
+* `individual_traits`: the value of each trait for each individual
+* `individual_midparents`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
 
-By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1 and provide a path to an _order file_ as the `orderfile` parameter (e.g. `orderfile whattosave.txt`). The order file should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI genome_Fst`).
+By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1 and provide a path to an _order file_ as the `orderfile` parameter (e.g. `orderfile whattosave.txt`). The order file should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
 
 ## Saving whole individual genomes
 
@@ -182,7 +182,7 @@ Some variables need other variables to be saved in order to be interpreted down 
 
 In general we advise the following:
 
-* have the genetic architecture at hand (e.g. `archsave 1`) to interpret the genetic data you might save (`genome_*`, `network_*` and whole individual genomes)
+* have the genetic architecture at hand (e.g. `archsave 1`) to interpret the genetic data you might save (`locus_*`, `edge_*` and whole individual genomes)
 * save `time`, as it is useful information for any of the other variables
 * save `population_size` whenever `individual_*` variables or whole individual genomes are saved
 
