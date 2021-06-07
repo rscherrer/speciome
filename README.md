@@ -48,7 +48,7 @@ The program has a command-line interface (CLI). Running it on its own will run a
 
 ## Parameters
 
-Non-default parameters are supplied in a _parameter file_. The parameter file must contain on each line, the name of one parameter followed by a blank (e.g. space or tab) and the value(s) that this parameter must take. Parameter names must match those in the table. Parameters that are not in the parameter file will take default values. Parameters that take multiple values must be supplied as such, with values separated by blanks (e.g. `nvertices 30 30 30`).
+Non-default parameters are supplied in a parameter file. The parameter file must contain on each line, the name of one parameter followed by a blank (e.g. space or tab) and the value(s) that this parameter must take. Parameter names must match those in the table. Parameters that are not in the parameter file will take default values. Parameters that take multiple values must be supplied as such, with values separated by blanks (e.g. `nvertices 30 30 30`).
 
 We describe the different parameters (and their default value).
 
@@ -88,26 +88,21 @@ General simulation parameters:
 * `tsave` (10) is the frequency at which to record the data
 * `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
-* `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
+* `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file `whattosave.txt` (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
 * `datsave` (1) sets whether to save the recorded variables to files
 * `burninsave` (0) sets whether to save data during the burn-in phase too (time points belonging to the burn-in are negative)
-* `gensave` (0) is either 0 or 1 and sets whether whole genomes should be saved every `tfreeze` generations
-* `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into a file (see below)
-* `archload` (0) sets whether the genetic architecture of the simulation should be loaded from a file instead of generated anew
-* `parsave` (1) sets whether to save the parameters of the simulation run to file, including the random seed
-* `logsave` (0) sets whether the output to prompt should be redirected to a log file (set by `lofgile`)
-* `archfile` (architecture.txt) is the name of the architecture file where the details of the genetic architecture must be loaded from, if `archload` is 1
-* `parfile` (paramlog.txt) is the name of the output parameter file where to save the parameters of the current simulation, if `parsave` is 1. This can be used e.g. to retrieve a random seed
-* `orderfile` (whattosave.txt) is the name of the order file where the list of variables to save is specified, if `choosewhattosave` is 1
-* `logfile` (log.txt) is the name of a file capturing the console output of the simulation
-* `freezerfile` (freezer.dat) is the name of the binary file where to save individual whole genomes
+* `gensave` (0) is either 0 or 1 and sets whether whole genomes should be saved every `tfreeze` generations (see below)
+* `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into file `architecture.txt` (see below)
+* `archload` (0) sets whether the genetic architecture of the simulation should be loaded from file `architecture.txt` instead of generated anew
+* `parsave` (1) sets whether to save the parameters of the simulation run to file, including the random seed, into a parameter-log file `paramlog.txt`
+* `logsave` (0) sets whether the output to prompt should be redirected to a log file `log.txt`
 * `seed` is the seed of the random number generator, and it is by default randomly generated based on the clock
 
 ## Genetic architecture
 
 The genetic architecture refers to the constant features of the genetic part of the program, that is, features that do not change through time and cannot evolve. These include the number of chromosomes, the numbers of loci and edges for each trait, the trait each locus codes for as well as its location in the genome, its additive effect size and its dominance coefficient, and finally the topology and distribution of interaction weights across edges within each of the three gene networks (one for each trait, the networks are independent).
 
-A genetic architecture can either be generated anew at the beginning of a simulation by randomly sampling the aforementioned features and building networks with a random preferential attachment algorithm, or it can be supplied to the program in an _architecture file_. To load the genetic architecture from an architecture file, make sure to set parameter `archload` to 1 and `archfile` as a correct path to the architecture file (e.g. `archfile architecture.txt` if the architecture file is in the working directory).
+A genetic architecture can either be generated anew at the beginning of a simulation by randomly sampling the aforementioned features and building networks with a random preferential attachment algorithm, or it can be supplied to the program in an architecture file `architecture.txt`. To load the genetic architecture from an architecture file, make sure to set parameter `archload` to 1.
 
 The architecture file is a text file that should consist of several _fields_ followed by the sets of _entries_ these fields should take. The possible fields are:
 
@@ -128,7 +123,7 @@ The rest of the architecture file is reserved for information about the three ge
 
 Note: fields and entries can be separated by any type of blank such as spaces, tabs or line breaks.
 
-A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file defined by `archfile`).
+A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file `architecture.txt`).
 
 For now the architecture loading function assumes that the loaded architecture has been generated by another run of the simulation, setting `archsave` to 1. This means that the program expects an architecture file starting with the list of parameters used to generate that architecture, as those are used to reset parameters associated with the genetic architecture in the current simulation, such as `nvertices` or `nedges` (parameters provided in the parameter file are overriden if they do not match the features of the architecture to load). The program also searches for the string "Architecture:" to know where the details of the architecture are given. (We need to come up with something less convoluted in a later release.)
 
@@ -164,7 +159,7 @@ The following variables are saved every `tsave` timepoint:
 * `individual_traits`: the value of each trait for each individual
 * `individual_midparents`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
 
-By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1 and provide a path to an _order file_ as the `orderfile` parameter (e.g. `orderfile whattosave.txt`). The order file should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
+By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
 
 ## Saving whole individual genomes
 
@@ -174,7 +169,7 @@ Saving the whole genomes of all individuals through time takes a lot of space, f
 
 2. Genetic values across the genome for each individual are stored in `individual_locus_genvalues.dat` as floating point numbers encoded into a binary file, just as the other output variables, but with one value per locus per individual, per time point. 
 
-**Important:** whole individual genomes take a lot of space. For this reason we advise against saving them too often. Unfortunately it is not possible to save some variables at a certain frequency and individual genomes less frequently in one simulation, as there is only one `tsave`. To collect data on different timelines, however, it is possible to run multiple simulations with the same `seed`. This can be done either by choosing a seed beforehand, or by saving the random seed of the first simulation (it will be saved in the `parfile` if `parsave 1`) and use it as `seed` to parametrize the next simulations.
+**Important:** whole individual genomes take a lot of space. For this reason we advise against saving them too often. Unfortunately it is not possible to save some variables at a certain frequency and individual genomes less frequently in one simulation, as there is only one `tsave`. To collect data on different timelines, however, it is possible to run multiple simulations with the same `seed`. This can be done either by choosing a seed beforehand, or by saving the random seed of the first simulation (it will be saved in the parameter-log file `paramlog.txt` if `parsave 1`) and use it as `seed` to parametrize the next simulations.
 
 ## Which variables to save
 
