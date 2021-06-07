@@ -84,8 +84,6 @@ struct Param {
     std::string parfile;
     std::string orderfile;
     std::string logfile;
-    std::string freezerfile;
-    std::string locifile;
     size_t seed;
     size_t ntrials;
 

@@ -24,8 +24,8 @@ public:
     Freezer();
     ~Freezer();
 
-    void openFreezer(const std::string&);
-    void openLoci(const std::string&);
+    void open(const std::string&);
+    void open(Stream&, const std::string&);
     void freeze(const MetaPop&, const size_t&);
     void saveIndivGenome(const Individual&, const size_t&);
     void shutdown();

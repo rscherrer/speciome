@@ -38,8 +38,8 @@ int simulate(const std::vector<std::string> &args)
         Freezer freezer = Freezer();
         if (pars.gensave) {
 
-            freezer.openFreezer(pars.freezerfile);
-            freezer.openLoci(pars.locifile);
+            freezer.open("individual_whole_genomes.dat");
+            freezer.open("individual_locus_genvalues.dat");
 
         }
 
