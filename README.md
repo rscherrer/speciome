@@ -146,8 +146,8 @@ The following variables are saved every `tsave` timepoint:
 * `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
 * `locus_meang`: the mean genetic value of each locus in the whole population
 * `locus_freq`: the allele frequency (of the 1-allele) for each locus in the whole population
-* `locus_freqs`: the allele frequencies for each locus within each ecotype
-* `locus_hobs`: the observed heterozygosity for each locus within each ecotype
+* `ecotype_locus_freq`: the allele frequencies for each locus within each ecotype
+* `ecotype_locus_hobs`: the observed heterozygosity for each locus within each ecotype
 * `edge_corgen`, `edge_corbreed`, `edge_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
 * `edge_avgi`, `edge_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
 * `individual_ecotypes`, `individual_habitats`: the ecotype and habitat of each individual
