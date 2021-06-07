@@ -175,10 +175,11 @@ void GenArch::write(const std::vector<Edge> &v, std::ofstream &file, const bool 
 
 void GenArch::save(Param &pars) const
 {
-    std::ofstream archfile(pars.archfile); // should be arg
+    const std::string filename = "architecture.txt";
+    std::ofstream archfile(filename);
 
     if (!archfile.is_open())
-        throw std::runtime_error("Unable to open file " + pars.archfile + '\n');
+        throw std::runtime_error("Unable to open file " + filename + '\n');
 
     // Write parameters first
     archfile << "Parameters used to generate the architecture:\n";
@@ -254,7 +255,7 @@ void GenArch::load(const Param &pars)
     // with that found in the arhictecture file provided
     // and update the parameters accordingly
 
-    const std::string filename = pars.archfile;
+    const std::string filename = "architecture.txt";
 
     // Open the architecture file
     std::ifstream file(filename.c_str());

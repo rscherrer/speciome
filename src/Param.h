@@ -80,10 +80,6 @@ struct Param {
     bool archload;
     bool parsave;
     bool logsave;
-    std::string archfile;
-    std::string parfile;
-    std::string orderfile;
-    std::string logfile;
     size_t seed;
     size_t ntrials;
 

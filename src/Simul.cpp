@@ -30,7 +30,7 @@ int simulate(const std::vector<std::string> &args)
         Collector collector = Collector(arch);
 
         // Create a printer
-        const std::string order = pars.choosewhattosave ? pars.orderfile : "";
+        const std::string order = pars.choosewhattosave ? "whattosave.txt" : "";
         Printer printer = Printer(order);
         if (pars.datsave) printer.open();
 
@@ -44,8 +44,7 @@ int simulate(const std::vector<std::string> &args)
         }
 
         // Redirect output to log file if needed
-        if (pars.logsave)
-            pars.logsave = std::freopen(pars.logfile.c_str(), "w", stdout);
+        if (pars.logsave) pars.logsave = std::freopen("log.txt", "w", stdout);
 
         // Open a log file
         std::cout << "Simulation started.\n";
