@@ -251,7 +251,7 @@ std::vector<std::string> Printer::whattosave(const std::string &filename) const
     std::ifstream file;
     file.open(filename);
     if (!file.is_open()) {
-        std::string msg = "Unable to open save file ";
+        std::string msg = "Unable to open order file ";
         throw std::runtime_error(msg + filename);
     }
 
