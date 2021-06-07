@@ -98,34 +98,29 @@ General simulation parameters:
 * `logsave` (0) sets whether the output to prompt should be redirected to a log file `log.txt`
 * `seed` is the seed of the random number generator, and it is by default randomly generated based on the clock
 
+Note that it is a good idea to set `parsave 1` and `logsave 1`, to make sure the full range of parameter values can be retrieved or the simulation progress can be monitored. Some analysis functions from the R package [speciomer](https://github.com/rscherrer/speciomer) actually expect the parameter-log file "paramlog.txt" to be present.
+
 ## Genetic architecture
 
 The genetic architecture refers to the constant features of the genetic part of the program, that is, features that do not change through time and cannot evolve. These include the number of chromosomes, the numbers of loci and edges for each trait, the trait each locus codes for as well as its location in the genome, its additive effect size and its dominance coefficient, and finally the topology and distribution of interaction weights across edges within each of the three gene networks (one for each trait, the networks are independent).
 
 A genetic architecture can either be generated anew at the beginning of a simulation by randomly sampling the aforementioned features and building networks with a random preferential attachment algorithm, or it can be supplied to the program in an architecture file `architecture.txt`. To load the genetic architecture from an architecture file, make sure to set parameter `archload` to 1.
 
-The architecture file is a text file that should consist of several _fields_ followed by the sets of _entries_ these fields should take. The possible fields are:
+The architecture file is a text file organized in two sections, each delimited by the header "--parameters--" or "--architecture--". 
 
-* `chromosomes`: the end location of each chromosome, where location along the genome ranges between 0 and 1 (e.g. for three equally sized chromosomes write `chromosomes 0.333333 0.666667 1`)
+1. Under the "--parameters--" header are expected the names and values of parameters (or rather hyperparameters) that are important for the set-up of the genetic architecture. Those are `nchrom`, `nvertices` and `nedges`, and should be provided just like in a parameter file (see above). They will be used to read the right numer of entries from the following section, and to override the parameters in the model once the architecture is loaded.
 
-The following fields have as many entries as there are loci in the genome, and each entry corresponds to one locus, ordered from the beginning (location 0) to the end (location 1) of the genome.
+2. Under the "--architecture--" header are expected the names and values of the actual architecture fields, which are essentially lists of parameters. There are three kinds of fields, that differ in how many values they take: chromosome-wise fields, locus-wise fields and edge-wise fields.
 
-* `traits`: by the traits encoded by all loci (e.g. `traits 0 0 1 1 2 2` for six loci, with two loci per trait, where trait 0 is the ecological trait, trait 1 is the mating trait and trait 2 is the neutral trait)
-* `locations`: the genomic locations (between 0 and 1) of all loci (e.g. `locations 0.01 0.02 0.45 0.6 0.8 0.9` for the same six loci)
-* `effects`: the additive effect sizes of all loci (e.g. `effects -0.1 0.1 -0.1 0.1 -0.1 0.1`)
-* `dominances`: the dominance coefficients of all loci (e.g. `dominances 0.1 0.2 0.3 0.4 0.5`)
+* Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
 
-The rest of the architecture file is reserved for information about the three gene networks. For each gene network, start with the keyword `network` followed by the index of its trait, and the number of edges in that network (e.g. `network 0 100` for an ecological gene network with 100 edges). Following this, the program will expect three fields, each with as many entries as edges in the network (so one entry per edge):
+* Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
 
-* `weights`: the interaction weights of all edges
-* `edge0`: the locus index of the first partner for all edges
-* `edge1`: the locus index of the second partner for all edges
+* Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
 
-Note: fields and entries can be separated by any type of blank such as spaces, tabs or line breaks.
+Each field should be followed by the values it takes (e.g. `chromosomes 0.333333 0.666667 1`, `locations 0.01 0.02 0.45 0.6 0.8 0.9`), but if the field is an edge-wise field the values should be preceded by the index of the trait of the network that field belongs to (e.g. `weights 0 0.56 0.37 -0.45 0.67 0.1 -0.89`, where 0 in second position refers to the ecological trait). Fields and values are all separated by spaces.
 
-A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file `architecture.txt`).
-
-For now the architecture loading function assumes that the loaded architecture has been generated by another run of the simulation, setting `archsave` to 1. This means that the program expects an architecture file starting with the list of parameters used to generate that architecture, as those are used to reset parameters associated with the genetic architecture in the current simulation, such as `nvertices` or `nedges` (parameters provided in the parameter file are overriden if they do not match the features of the architecture to load). The program also searches for the string "Architecture:" to know where the details of the architecture are given. (We need to come up with something less convoluted in a later release.)
+A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file `architecture.txt`). For any other architecture file supplied, you need to make sure that the aforementioned expected structure is respected and that all the necessary fields are present.
 
 Note that in general it is a good idea to save the genetic architecture used if you are going to save and analyze genetic data from the simulation, as the output variables do not contain details about the architecture, which might make them difficult to interpret otherwise.
 

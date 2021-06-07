@@ -134,7 +134,7 @@ private:
 
     void read(std::vector<double>&, const size_t&, std::ifstream&);
     void read(std::vector<size_t>&, const size_t&, std::ifstream&);
-    void read(std::vector<Edge>&, const size_t&, const bool&, std::ifstream&);
+    void read(std::vector<Edge>&, const size_t&, const size_t&, std::ifstream&);
 
 };
 
