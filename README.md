@@ -135,7 +135,7 @@ The following variables are saved every `tsave` timepoint:
 * `ecotype_population_sizes`: population size of each ecotype
 * `habitat_resources`: equilibrium resource concentration of each resource in each habitat
 * `trait_means`: mean value of each trait across the whole population
-* `ecotype_trait_means`: mean value of each trait in each ecotype
+* `trait_ecotype_means`: mean value of each trait in each ecotype
 * `trait_varP`, `trait_varG`, `trait_varA`, `trait_varD`, `trait_varI`, `trait_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait
 * `trait_varT`: variance in allele frequencies across loci coding for each trait
 * `trait_Pst`, `trait_Gst`, `trait_Qst`, `trait_Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
@@ -146,8 +146,8 @@ The following variables are saved every `tsave` timepoint:
 * `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
 * `locus_meang`: the mean genetic value of each locus in the whole population
 * `locus_freq`: the allele frequency (of the 1-allele) for each locus in the whole population
-* `ecotype_locus_freq`: the allele frequencies for each locus within each ecotype
-* `ecotype_locus_hobs`: the observed heterozygosity for each locus within each ecotype
+* `locus_ecotype_freq`: the allele frequencies for each locus within each ecotype
+* `locus_ecotype_hobs`: the observed heterozygosity for each locus within each ecotype
 * `edge_corgen`, `edge_corbreed`, `edge_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
 * `edge_avgi`, `edge_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
 * `individual_ecotypes`, `individual_habitats`: the ecotype and habitat of each individual
