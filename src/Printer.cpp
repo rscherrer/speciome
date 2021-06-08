@@ -57,7 +57,7 @@ void Printer::print(const int &t, const Collector &c, const MetaPop &m)
         else if (filenames[f] == "trait_means")
             for (size_t trait = 0u; trait < 3u; ++trait)
                 stf::write(c.means[trait][2u][2u], files[f]);
-        else if (filenames[f] == "ecotype_trait_means")
+        else if (filenames[f] == "trait_ecotype_means")
             for (size_t trait = 0u; trait < 3u; ++trait)
                 for (size_t eco = 0u; eco < 2u; ++eco)
                     stf::write(c.means[trait][2u][eco], files[f]);
@@ -145,11 +145,11 @@ void Printer::print(const int &t, const Collector &c, const MetaPop &m)
         else if (filenames[f] == "locus_freq")
             for (size_t l = 0u; l < c.genomescan.size(); ++l)
                 stf::write(c.genomescan[l].freqs[2u], files[f]);
-        else if (filenames[f] == "ecotype_locus_freq")
+        else if (filenames[f] == "locus_ecotype_freq")
             for (size_t l = 0u; l < c.genomescan.size(); ++l)
                 for (size_t e = 0u; e < 2u; ++e)
                     stf::write(c.genomescan[l].freqs[e], files[f]);
-        else if (filenames[f] == "ecotype_locus_hobs")
+        else if (filenames[f] == "locus_ecotype_hobs")
             for (size_t l = 0u; l < c.genomescan.size(); ++l)
                 for (size_t e = 0u; e < 2u; ++e)
                     stf::write(c.genomescan[l].hobs[e], files[f]);
