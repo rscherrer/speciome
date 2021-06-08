@@ -175,44 +175,42 @@ void GenArch::write(const std::vector<Edge> &v, std::ofstream &file, const bool 
 
 void GenArch::save(Param &pars) const
 {
-    std::ofstream archfile(pars.archfile); // should be arg
+    const std::string filename = "architecture.txt";
+    std::ofstream archfile(filename);
 
     if (!archfile.is_open())
-        throw std::runtime_error("Unable to open file " + pars.archfile + '\n');
+        throw std::runtime_error("Unable to open file " + filename + '\n');
 
     // Write parameters first
-    archfile << "Parameters used to generate the architecture:\n";
+    archfile << "--parameters--\n";
     pars.write(archfile);
 
-    archfile << "\nArchitecture:\n";
+    archfile << "\n--architecture--\n";
 
-    archfile << "chromosomes\n";
+    archfile << "chromosomes ";
     write(chromosomes, archfile);
 
-    archfile << "traits\n";
+    archfile << "traits ";
     write(traits, archfile);
 
-    archfile << "locations\n";
+    archfile << "locations ";
     write(locations, archfile);
 
-    archfile << "effects\n";
+    archfile << "effects ";
     write(effects, archfile);
 
-    archfile << "dominances\n";
+    archfile << "dominances ";
     write(dominances, archfile);
 
     for (size_t trait = 0u; trait < 3u; ++trait) {
 
-        archfile << "\nnetwork " << trait << ' ';
-        archfile << networks[trait].edges.size() << '\n';
-
-        archfile << "edges0\n";
+        archfile << "from " << trait << ' ';
         write(networks[trait].edges, archfile, false);
 
-        archfile << "edges1\n";
+        archfile << "to " << trait << ' ';
         write(networks[trait].edges, archfile, true);
 
-        archfile << "weights\n";
+        archfile << "weights " << trait << ' ';
         write(networks[trait].weights, archfile);
 
     }
@@ -233,7 +231,7 @@ void GenArch::read(std::vector<size_t> &v, const size_t &n, std::ifstream &file)
         file >> v[i];
 }
 
-void GenArch::read(std::vector<Edge> &v, const size_t &n, const bool &id, std::ifstream &file)
+void GenArch::read(std::vector<Edge> &v, const size_t &n, const size_t &id, std::ifstream &file)
 {
     double x;
     for (size_t p = 0u; p < n; ++p) {
@@ -254,7 +252,7 @@ void GenArch::load(const Param &pars)
     // with that found in the arhictecture file provided
     // and update the parameters accordingly
 
-    const std::string filename = pars.archfile;
+    const std::string filename = "architecture.txt";
 
     // Open the architecture file
     std::ifstream file(filename.c_str());
@@ -265,6 +263,7 @@ void GenArch::load(const Param &pars)
     std::string field;
     size_t nchrom = 1u;
     size_t nloci = 0u;
+    std::vector<size_t> nedges = {0u, 0u, 0u};
 
     // Read in parameters of interest first
     do {
@@ -273,17 +272,19 @@ void GenArch::load(const Param &pars)
 
         if (field == "nchrom") file >> nchrom;
         if (field == "nvertices") {
-
             for (size_t trait = 0u; trait < 3u; ++trait) {
                 size_t nvertices;
                 file >> nvertices;
                 nloci += nvertices;
             }
         }
+        if (field == "nedges")
+            for (size_t trait = 0u; trait < 3u; ++trait)
+                file >> nedges[trait];
     }
-    while (field != "Architecture:");
+    while (field != "--architecture--");
 
-    // Reset the architecture
+    // Reset the architecture and check dimensions
     chromosomes.resize(nchrom);
     traits.resize(nloci);
     locations.resize(nloci);
@@ -296,9 +297,15 @@ void GenArch::load(const Param &pars)
     assert(effects.size() == nloci);
     assert(dominances.size() == nloci);
 
+    for (size_t trait = 0u; trait < 3u; ++trait) {
+        networks[trait].edges.resize(nedges[trait]);
+        networks[trait].weights.resize(nedges[trait]);
+        assert(networks[trait].edges.size() == nedges[trait]);
+        assert(networks[trait].weights.size() == nedges[trait]);
+    }
+
     // Prepare to read architecture
     size_t trait = 0u;
-    size_t nedges = 0u;
 
     // Read in architecture
     while (file >> field) {
@@ -309,19 +316,12 @@ void GenArch::load(const Param &pars)
         else if (field == "effects") read(effects, nloci, file);
         else if (field == "dominances") read(dominances, nloci, file);
 
-        else if (field == "network") {
+        else if (field == "from" || field == "to" || field == "weights") {
             file >> trait;
-            file >> nedges;
-            networks[trait].edges.resize(nedges);
-            networks[trait].weights.resize(nedges);
-            assert(networks[trait].edges.size() == nedges);
-            assert(networks[trait].weights.size() == nedges);
+            if (field == "from") read(networks[trait].edges, nedges[trait], 0u, file);
+            else if (field == "to") read(networks[trait].edges, nedges[trait], 1u, file);
+            else if (field == "weights") read(networks[trait].weights, nedges[trait], file);
         }
-
-        else if (field == "edges0") read(networks[trait].edges, nedges, false, file);
-        else if (field == "edges1") read(networks[trait].edges, nedges, true, file);
-        else if (field == "weights") read(networks[trait].weights, nedges, file);
-
     }
 
     file.close();

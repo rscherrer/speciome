@@ -49,12 +49,6 @@ Param::Param() :
     archload(false),
     parsave(true),
     logsave(false),
-    archfile("architecture.txt"),
-    parfile("paramlog.txt"),
-    orderfile("whattosave.txt"),
-    logfile("log.txt"),
-    freezerfile("freezer.dat"),
-    locifile("locivalues.dat"),
     seed(makeDefaultSeed()),
     ntrials(100u)
 {
@@ -149,12 +143,6 @@ void Param::import(std::ifstream &file)
         else if (input == "archload") file >> archload;
         else if (input == "parsave") file >> parsave;
         else if (input == "logsave") file >> logsave;
-        else if (input == "archfile") file >> archfile;
-        else if (input == "parfile") file >> parfile;
-        else if (input == "orderfile") file >> orderfile;
-        else if (input == "logfile") file >> logfile;
-        else if (input == "freezerfile") file >> freezerfile;
-        else if (input == "locifile") file >> locifile;
         else if (input == "seed") file >> seed;
         else if (input == "ntrials") file >> ntrials;
         else
@@ -275,9 +263,10 @@ void Param::check() const
 
 void Param::save() const
 {
-    std::ofstream file(parfile);
+    const std::string filename = "paramlog.txt";
+    std::ofstream file(filename);
     if (!file.is_open())
-        throw std::runtime_error("Unable to open file " + parfile);
+        throw std::runtime_error("Unable to open file " + filename);
     write(file);
     file.close();
 }
@@ -344,12 +333,6 @@ void Param::write(std::ofstream &file) const
     file << "archload " << archload << '\n';
     file << "parsave " << parsave << '\n';
     file << "logsave " << logsave << '\n';
-    file << "archfile " << archfile << '\n';
-    file << "parfile " << parfile << '\n';
-    file << "orderfile " << orderfile << '\n';
-    file << "logfile " << logfile << '\n';
-    file << "freezerfile " << freezerfile << '\n';
-    file << "locifile " << locifile << '\n';
     file << "seed " << seed << '\n';
     file << "ntrials " << ntrials << '\n';
 

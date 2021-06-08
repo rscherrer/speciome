@@ -66,8 +66,8 @@ BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
     BOOST_CHECK_EQUAL(ri.size(), 10u);
 
     // Read individual trait values and ecotypes
-    std::vector<double> popx = tst::readfile("individual_trait.dat");
-    std::vector<double> ecotypes = tst::readfile("individual_ecotype.dat");
+    std::vector<double> popx = tst::readfile("individual_traits.dat");
+    std::vector<double> ecotypes = tst::readfile("individual_ecotypes.dat");
 
     BOOST_CHECK_EQUAL(popx.size() / 3u, cumulsize);
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(SaveOneGenome)
     GenArch arch = GenArch(pars);
 
     Freezer freezer = Freezer();
-    freezer.openFreezer("freezer_test.dat");
+    freezer.open("individual_whole_genomes.dat");
 
     // Save the full genome of one individual
     Individual ind(Individual(pars, arch));
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(SaveOneGenome)
 
     // Read the genome back
     std::bitset<180u> genome;
-    std::vector<size_t> genomeChunks = tst::readfile2("freezer_test.dat");
+    std::vector<size_t> genomeChunks = tst::readfile2("individual_whole_genomes.dat");
     size_t k = 0u;
 
     for (size_t i = 0u; i < genomeChunks.size(); ++i) {
@@ -165,15 +165,15 @@ BOOST_AUTO_TEST_CASE(SaveAllGenomes)
     MetaPop pop(MetaPop(pars, arch));
 
     Freezer freezer = Freezer();
-    freezer.openFreezer("freezer_test2.dat");
-    freezer.openLoci("locivalues2.dat");
+    freezer.open("individual_whole_genomes.dat");
+    freezer.open("individual_locus_genvalues.dat");
 
     // Save the genomes
     freezer.freeze(pop, pars.nloci);
     freezer.shutdown(); // close the freezer to be able to read the file
 
     // Read the genomes back
-    std::vector<size_t> genomeChunks = tst::readfile2("freezer_test2.dat");
+    std::vector<size_t> genomeChunks = tst::readfile2("individual_whole_genomes.dat");
 
     // Get the original integer-chunks of genome from the population
     const size_t nchunks = 2u * pars.nloci / 64u + 1u; // per individual
@@ -190,7 +190,7 @@ BOOST_AUTO_TEST_CASE(SaveAllGenomes)
         BOOST_CHECK_EQUAL(genomeChunks[k], originalChunks[k]);
 
     // Check that the loci values were saved correctly
-    std::vector<double> locivalues = tst::readfile("locivalues2.dat");
+    std::vector<double> locivalues = tst::readfile("individual_locus_genvalues.dat");
 
     for (size_t i = 0u, k = 0u; i < pop.getSize(); ++i)
         for (size_t l = 0u; l < pars.nloci; ++l, ++k)

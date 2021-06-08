@@ -30,7 +30,7 @@ int simulate(const std::vector<std::string> &args)
         Collector collector = Collector(arch);
 
         // Create a printer
-        const std::string order = pars.choosewhattosave ? pars.orderfile : "";
+        const std::string order = pars.choosewhattosave ? "whattosave.txt" : "";
         Printer printer = Printer(order);
         if (pars.datsave) printer.open();
 
@@ -38,14 +38,13 @@ int simulate(const std::vector<std::string> &args)
         Freezer freezer = Freezer();
         if (pars.gensave) {
 
-            freezer.openFreezer(pars.freezerfile);
-            freezer.openLoci(pars.locifile);
+            freezer.open("individual_whole_genomes.dat");
+            freezer.open("individual_locus_genvalues.dat");
 
         }
 
         // Redirect output to log file if needed
-        if (pars.logsave)
-            pars.logsave = std::freopen(pars.logfile.c_str(), "w", stdout);
+        if (pars.logsave) pars.logsave = std::freopen("log.txt", "w", stdout);
 
         // Open a log file
         std::cout << "Simulation started.\n";

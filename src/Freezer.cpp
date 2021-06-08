@@ -22,24 +22,26 @@ void Freezer::shutdown() {
 // Member functions
 //-----------------
 
-// Open the freezer file
-void Freezer::openFreezer(const std::string &freezername) {
+// Open a file and link it to its container
+void Freezer::open(Stream &container, const std::string &filename) {
 
-    freezer->open(freezername, std::ios::binary);
-    if (!freezer->is_open()) {
-        std::string msg = "Unable to open output freezer file";
+    container->open(filename, std::ios::binary);
+    if (!container->is_open()) {
+        std::string msg = "Unable to open output file " + filename;
         throw std::runtime_error(msg);
     }
 
-
 }
 
-// Open the locus file
-void Freezer::openLoci(const std::string &lociname) {
+// Open a file where to save individual whole-genome data
+void Freezer::open(const std::string &filename) {
 
-    locivalues->open(lociname, std::ios::binary);
-    if (!locivalues->is_open()) {
-        std::string msg = "Unable to open loci values file";
+    if (filename == "individual_whole_genomes.dat") {
+        open(freezer, filename);
+    } else if (filename == "individual_locus_genvalues.dat") {
+        open(locivalues, filename);
+    } else {
+        std::string msg = "Invalid output file to open " + filename;
         throw std::runtime_error(msg);
     }
 
