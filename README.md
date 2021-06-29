@@ -86,7 +86,6 @@ General simulation parameters:
 * `tburnin` (0) is the duration of the burn-in period, in generations
 * `tend` (10) is the number of generations to simulate (after burn-in)
 * `tsave` (10) is the frequency at which to record the data
-* `tcalcri` (0) is the frequency at which to record reproductive isolation (RI). RI is on a separate timeline than the rest of the variables because its computation involves sampling random numbers (it samples mating events and records effective mating preferences). Therefore, measuring RI affects the course of events because it affects the random numbers that will be generated down the line. This means that two simulations run with the same `seed` (see below) will not be identical if they compute RI at different times. To ensure that simulations could be replicated and recorded at different resolutions we therefore keep the computation of RI on a separate timeline. So, you can run two identical simulations sampled at different temporal resolutions, just make sure that `tcalcri` is identical between the two. Note that it is thus the other variables that may be sampled at different frequencies, not RI (there is no way around it: two simulations computing RI at different frequencies *will* be different). If `tcalcri` is set to zero, it takes the value of `tsave` and RI is recorded at the same time as the other variables, provided that `datsave` is one and "RI" is written in the order file `whattosave.txt` (see below).
 * `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
 * `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file `whattosave.txt` (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
@@ -141,7 +140,7 @@ The following variables are saved every `tsave` timepoint:
 * `trait_varT`: variance in allele frequencies across loci coding for each trait
 * `trait_Pst`, `trait_Gst`, `trait_Qst`, `trait_Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
 * `trait_Fst`: fixation index, or genetic differentiation between the two ecotypes, for each trait
-* `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively
+* `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively.
 * `locus_varP`, `locus_varG`, `locus_varA`, `locus_varD`, `locus_varI`, `locus_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
 * `locus_Pst`, `locus_Gst`, `locus_Qst`, `locus_Cst`, `locus_Fst`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
 * `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
@@ -156,6 +155,8 @@ The following variables are saved every `tsave` timepoint:
 * `individual_midparents`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
 
 By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
+
+Note: the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling has the potential of affecting the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
 
 ## Saving whole individual genomes
 
