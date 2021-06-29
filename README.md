@@ -156,7 +156,7 @@ The following variables are saved every `tsave` timepoint:
 
 By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
 
-Note: the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling has the potential of affecting the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
+**Note:** the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling can affect the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
 
 ## Saving whole individual genomes
 
