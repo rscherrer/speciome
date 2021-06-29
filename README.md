@@ -84,7 +84,7 @@ Genetic parameters:
 General simulation parameters:
 
 * `tburnin` (0) is the duration of the burn-in period, in generations
-* `tend` (10) is the number of generations to simulate (after burn-in)
+* `tend` (10) is the number of generations to simulate (use a negative value to end the simulation during the burn-in)
 * `tsave` (10) is the frequency at which to record the data
 * `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
