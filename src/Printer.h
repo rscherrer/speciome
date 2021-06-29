@@ -19,7 +19,6 @@ public:
 
     void open();
     void print(const int&, const Collector&, const MetaPop&);
-    void printRI(const Collector&);
     void shutdown();
 
 private:

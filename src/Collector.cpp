@@ -586,8 +586,8 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
         // Sample many pairs of males and females with replacement
         while (ntrials) {
 
-            const size_t fem = females[femalepool(rnd::rng)];
-            const size_t mal = males[malepool(rnd::rng)];
+            const size_t fem = females[femalepool(rnd::rng2)];
+            const size_t mal = males[malepool(rnd::rng2)];
 
             // See if the female accepts the male or not
             const double maletrait = m.population[mal].getTraitValue(0u);
@@ -841,6 +841,7 @@ void Collector::analyze(const MetaPop &m, const Param &p, const GenArch &a)
     // Speciation metrics
     calcEI();
     calcSI();
+    calcRI(m, p);
 
     // Note: RI is computed separately
 

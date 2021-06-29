@@ -243,9 +243,8 @@ public:
         tot(2u)
     {}
 
-    // Main functions
+    // Main function
     void analyze(const MetaPop&, const Param&, const GenArch&);
-    void calcRI(const MetaPop&, const Param&);
 
     // Various getters called in tests
     double getEI() const;
@@ -289,6 +288,7 @@ private:
     void partitionVariance(const size_t&);
     void calcEI();
     void calcSI();
+    void calcRI(const MetaPop&, const Param&);
     void analyzeLocus(const size_t&, const MetaPop&, const GenArch&, const Param&);
     void analyzeEdge(const size_t&, const MetaPop&, const GenArch&, const Param&);
     void analyzeTrait(const size_t&);

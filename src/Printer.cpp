@@ -102,6 +102,8 @@ void Printer::print(const int &t, const Collector &c, const MetaPop &m)
              stf::write(c.EI, files[f]);
         else if (filenames[f] == "SI")
              stf::write(c.SI, files[f]);
+        else if (filenames[f] == "RI")
+            stf::write(c.RI, files[f]);
         else if (filenames[f] == "locus_varP")
             for (size_t l = 0u; l < c.genomescan.size(); ++l)
                 stf::write(c.genomescan[l].varP[2u], files[f]);
@@ -182,18 +184,6 @@ void Printer::print(const int &t, const Collector &c, const MetaPop &m)
                 for (size_t trait = 0u; trait < 3u; ++trait)
                     stf::write(m.getMidparent(i, trait), files[f]);
     }
-}
-
-// Special printing function only for RI (separate timeline)
-void Printer::printRI(const Collector &c)
-{
-
-    for (size_t f = 0u; f < filenames.size(); ++f) {
-
-        if (filenames[f] == "RI") stf::write(c.RI, files[f]);
-
-    }
-
 }
 
 std::vector<std::string> Printer::whattosave(const std::string &filename) const
