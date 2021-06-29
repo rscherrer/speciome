@@ -598,7 +598,7 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
             const size_t ecom = m.population[mal].getEcotype();
 
             // Count homogamic and heterogamic crosses
-            if (ismating(rnd::rng)) ++crosses[ecof][ecom];
+            if (ismating(rnd::rng2)) ++crosses[ecof][ecom];
 
             --ntrials;
         }
