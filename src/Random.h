@@ -23,8 +23,9 @@ namespace rnd
     typedef std::gamma_distribution<double> gamma;
     typedef std::bernoulli_distribution bernoulli;
 
-    // Random number generator
+    // Random number generators
     extern std::mt19937_64 rng;
+    extern std::mt19937_64 rng2; // only for RI
 
 }
 

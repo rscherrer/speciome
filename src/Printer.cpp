@@ -38,6 +38,7 @@ void Printer::shutdown()
         files[f]->close();
 }
 
+// Print the collected variables to output files
 void Printer::print(const int &t, const Collector &c, const MetaPop &m)
 {
 
@@ -102,7 +103,7 @@ void Printer::print(const int &t, const Collector &c, const MetaPop &m)
         else if (filenames[f] == "SI")
              stf::write(c.SI, files[f]);
         else if (filenames[f] == "RI")
-             stf::write(c.RI, files[f]);
+            stf::write(c.RI, files[f]);
         else if (filenames[f] == "locus_varP")
             for (size_t l = 0u; l < c.genomescan.size(); ++l)
                 stf::write(c.genomescan[l].varP[2u], files[f]);

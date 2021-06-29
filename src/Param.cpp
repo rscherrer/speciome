@@ -160,6 +160,7 @@ void Param::import(std::ifstream &file)
 void Param::update()
 {
     rnd::rng.seed(seed);
+    rnd::rng2.seed(seed);
     nloci = utl::sum(nvertices);
     check();
 }
@@ -250,8 +251,6 @@ void Param::check() const
         msg = "Dominance variance should be positive";
     if (tburnin < 0)
         msg = "Burn-in time should be positive";
-    if (tend <= 0)
-        msg = "End time should be positive";
     if (tsave <= 0)
         msg = "Save time should be positive";
     if (ntrials == 0u)

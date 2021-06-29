@@ -567,7 +567,7 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
     std::vector<size_t> females;
     males.reserve(m.population.size());
     females.reserve(m.population.size());
-    for (size_t i =0u; i < m.population.size(); ++i) {
+    for (size_t i = 0u; i < m.population.size(); ++i) {
         const size_t sex = m.population[i].getGender();
         if (sex) females.push_back(i); else males.push_back(i);
     }
@@ -586,8 +586,8 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
         // Sample many pairs of males and females with replacement
         while (ntrials) {
 
-            const size_t fem = females[femalepool(rnd::rng)];
-            const size_t mal = males[malepool(rnd::rng)];
+            const size_t fem = females[femalepool(rnd::rng2)];
+            const size_t mal = males[malepool(rnd::rng2)];
 
             // See if the female accepts the male or not
             const double maletrait = m.population[mal].getTraitValue(0u);
@@ -598,7 +598,7 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
             const size_t ecom = m.population[mal].getEcotype();
 
             // Count homogamic and heterogamic crosses
-            if (ismating(rnd::rng)) ++crosses[ecof][ecom];
+            if (ismating(rnd::rng2)) ++crosses[ecof][ecom];
 
             --ntrials;
         }
@@ -842,6 +842,8 @@ void Collector::analyze(const MetaPop &m, const Param &p, const GenArch &a)
     calcEI();
     calcSI();
     calcRI(m, p);
+
+    // Note: RI is computed separately
 
     // Network scan
     for (size_t e = 0u; e < a.getNetworkSize(); ++e)

@@ -84,7 +84,7 @@ Genetic parameters:
 General simulation parameters:
 
 * `tburnin` (0) is the duration of the burn-in period, in generations
-* `tend` (10) is the number of generations to simulate (after burn-in)
+* `tend` (10) is the number of generations to simulate (use a negative value to end the simulation during the burn-in)
 * `tsave` (10) is the frequency at which to record the data
 * `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
 * `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
@@ -140,7 +140,7 @@ The following variables are saved every `tsave` timepoint:
 * `trait_varT`: variance in allele frequencies across loci coding for each trait
 * `trait_Pst`, `trait_Gst`, `trait_Qst`, `trait_Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
 * `trait_Fst`: fixation index, or genetic differentiation between the two ecotypes, for each trait
-* `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively
+* `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively.
 * `locus_varP`, `locus_varG`, `locus_varA`, `locus_varD`, `locus_varI`, `locus_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
 * `locus_Pst`, `locus_Gst`, `locus_Qst`, `locus_Cst`, `locus_Fst`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
 * `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
@@ -155,6 +155,8 @@ The following variables are saved every `tsave` timepoint:
 * `individual_midparents`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
 
 By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
+
+**Note:** the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling can affect the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
 
 ## Saving whole individual genomes
 
