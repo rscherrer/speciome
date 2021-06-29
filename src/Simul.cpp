@@ -20,6 +20,9 @@ int simulate(const std::vector<std::string> &args)
         // Load the genetic architecture if necessary
         if (pars.archload) arch.load(pars);
 
+        // Is reproductive isolation to be computed with the other variables?
+        if (pars.tcalcri == 0) pars.tcalcri = pars.tsave;
+
         // Save parameters if necessary
         if (pars.parsave) pars.save();
 
@@ -64,18 +67,33 @@ int simulate(const std::vector<std::string> &args)
             metapop.consume(pars);
 
             const bool timetosave = t % pars.tsave == 0;
+            const bool timetocalcri = t % pars.tcalcri == 0;
 
             // Analyze the metapopulation if needed
-            if (pars.datsave && (t >= 0 || pars.burninsave) && timetosave) {
+            if (pars.datsave && (t >= 0 || pars.burninsave)) {
 
-                // Collect stats
-                collector.analyze(metapop, pars, arch);
+                if (timetosave) {
 
-                // Save them to files
-                printer.print(t, collector, metapop);
+                    // Collect stats
+                    collector.analyze(metapop, pars, arch);
 
-                // Save whole genomes if needed (space-consuming)
-                if (pars.gensave) freezer.freeze(metapop, pars.nloci);
+                    // Save them to files
+                    printer.print(t, collector, metapop);
+
+                    // Save whole genomes if needed (space-consuming)
+                    if (pars.gensave) freezer.freeze(metapop, pars.nloci);
+
+                }
+
+                if (timetocalcri) {
+
+                    // Compute and save reproductive isolation
+                    // (separate timeline)
+                    collector.calcRI(metapop, pars);
+                    printer.printRI(collector);
+
+                }
+
 
             }
 

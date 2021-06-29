@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(MatingIsolationIsOneIfMatingIsAssortative)
     metapop.consume(pars);
 
     Collector collector = Collector(arch);
-    collector.analyze(metapop, pars, arch);
+    collector.calcRI(metapop, pars);
 
     BOOST_CHECK_EQUAL(utl::round(collector.getRI(), 4u), 1.0);
 

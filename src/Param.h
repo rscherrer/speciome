@@ -70,6 +70,7 @@ struct Param {
     int tburnin;
     int tend;
     int tsave;
+    int tcalcri;
     int tcomplete;
     bool talkative;
     bool datsave;

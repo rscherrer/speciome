@@ -567,7 +567,7 @@ void Collector::calcRI(const MetaPop &m, const Param &p) {
     std::vector<size_t> females;
     males.reserve(m.population.size());
     females.reserve(m.population.size());
-    for (size_t i =0u; i < m.population.size(); ++i) {
+    for (size_t i = 0u; i < m.population.size(); ++i) {
         const size_t sex = m.population[i].getGender();
         if (sex) females.push_back(i); else males.push_back(i);
     }
@@ -841,7 +841,8 @@ void Collector::analyze(const MetaPop &m, const Param &p, const GenArch &a)
     // Speciation metrics
     calcEI();
     calcSI();
-    calcRI(m, p);
+
+    // Note: RI is computed separately
 
     // Network scan
     for (size_t e = 0u; e < a.getNetworkSize(); ++e)
