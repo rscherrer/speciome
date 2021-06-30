@@ -52,7 +52,7 @@ Non-default parameters are supplied in a parameter file. The parameter file must
 
 We describe the different parameters (and their default value).
 
-Ecological parameters:
+### Ecological parameters:
 
 * `rdynamics` (default 1) is the type of resource dynamics (0 for *logistic dynamics*, which assume a biotic resource with an intrinsic growth and a carrying capacity, or 1 for *chemostat dynamics* with and inflow and outflow of some abiotic resource)
 * `replenish` (2375) and `capacity` (1) are the growth rate and carrying capacity, respectively, of the resources assuming logistic dynamics (`rdynamics 0`)
@@ -68,7 +68,7 @@ Ecological parameters:
 * `matingcost` (0.01) is the fitness cost of choosy females (that run the risk of remaining unmated)
 * `ntrials` (100) is the number of mating trials to perform to measure the degree of reproductive isolation between the species
 
-Genetic parameters:
+### Genetic parameters:
 
 * `nvertices` (30, 30, 30) and `nedges` (30, 0, 0) are the numbers of loci and edges, respectively, in each of the three gene networks (one for each trait in the following order: ecological, mating and neutral). `nvertices` must be at least 2 for each trait, and `nedges` cannot be higher than n (n - 1) / 2 (complete graph), if n is the number of vertice for a given trait. In practice, the preferential attachment algorithm may fail to attach all the requested edges of the network if nedges is close to the maximum possible number of edges. In this case the program will return an error. The number of edges should be at least n-1, which ensures that the network is connected (all the nodes are attached).
 * `nchrom` (3) is the number of equally sized chromosomes
@@ -81,7 +81,7 @@ Genetic parameters:
 * `interactionshape` (5) and `interactionscale` (1) are the parameters of the distribution of epistatic interaction weights across edges. If the resulting distribution has variance 0, all the edges are assigned interaction weight 1 
 * `dominancevar` (1) is the standard deviation of the distribution of dominance coefficients across loci. If 0, all the loci are assigned dominance coefficient 1
 
-General simulation parameters:
+### General simulation parameters:
 
 * `tburnin` (0) is the duration of the burn-in period, in generations
 * `tend` (10) is the number of generations to simulate (use a negative value to end the simulation during the burn-in)
@@ -112,11 +112,11 @@ The architecture file is a text file organized in two sections, each delimited b
 
 2. Under the "--architecture--" header are expected the names and values of the actual architecture fields, which are essentially lists of parameters. There are three kinds of fields, that differ in how many values they take: chromosome-wise fields, locus-wise fields and edge-wise fields.
 
-* Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
+* **Chromosome-wise field**: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
 
-* Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
+* **Locus-wise fields**: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
 
-* Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
+* **Edge-wise fields**: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
 
 Each field should be followed by the values it takes (e.g. `chromosomes 0.333333 0.666667 1`, `locations 0.01 0.02 0.45 0.6 0.8 0.9`), but if the field is an edge-wise field the values should be preceded by the index of the trait of the network that field belongs to (e.g. `weights 0 0.56 0.37 -0.45 0.67 0.1 -0.89`, where 0 in second position refers to the ecological trait). Fields and values are all separated by spaces.
 
