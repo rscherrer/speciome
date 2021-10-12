@@ -1,3 +1,11 @@
+# Potential folders within
+peregrine/
+analysis/
+ms/
+data/
+approx/
+extra/
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
