@@ -1,5 +1,9 @@
-#ifndef EXPLICITGENOMESPECIATION_NETWORK_H
-#define EXPLICITGENOMESPECIATION_NETWORK_H
+#ifndef SPECIOME_NETWORK_H
+#define SPECIOME_NETWORK_H
+
+// A class for a gene regulatory network. One network underlies one of the
+// three traits of the simulation. Networks are generated using a
+// preferential attachment algorithm, and are part of the bigger class GenArch.
 
 #include "Param.h"
 
@@ -9,10 +13,6 @@
 #include <stddef.h>
 
 typedef std::pair<size_t, size_t> Edge;
-
-// A class for a gene regulatory network. One network underlies one of the
-// three traits of the simulation. Networks are generated using a
-// preferential attachment algorithm, and are part of the bigger class GenArch.
 
 class Network
 {

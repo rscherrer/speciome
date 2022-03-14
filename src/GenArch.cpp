@@ -1,5 +1,7 @@
 #include "GenArch.h"
 
+// This is the source code for the member functions of the GenArch class.
+
 std::vector<double> GenArch::makeChromosomes(const Param &p) const
 {
 

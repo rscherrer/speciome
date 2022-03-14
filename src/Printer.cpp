@@ -1,5 +1,7 @@
 #include "Printer.h"
 
+// This is the source code for the member functions of the Printer class.
+
 // Constructor
 Printer::Printer(const std::string &orderfile) :
     filenames(whattosave(orderfile)),

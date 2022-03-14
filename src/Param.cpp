@@ -1,5 +1,7 @@
 #include "Param.h"
 
+// This is the source code for the member functions of the Param class.
+
 // Constructor
 //------------
 

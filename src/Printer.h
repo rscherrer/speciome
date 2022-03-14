@@ -1,5 +1,5 @@
-#ifndef EXPLICITGENOMESPECIATION_PRINTER_H
-#define EXPLICITGENOMESPECIATION_PRINTER_H
+#ifndef SPECIOME_PRINTER_H
+#define SPECIOME_PRINTER_H
 
 // This module is used to save summary statistics from the Collector to output
 // files

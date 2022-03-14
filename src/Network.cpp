@@ -1,5 +1,7 @@
 #include "Network.h"
 
+// This is the source code for the member functions of the Network class.
+
 bool checkedges(const size_t &e, const size_t &n)
 {
     return e <= n * (n - 1u) / 2u; // max number of edges given number of nodes

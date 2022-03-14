@@ -1,5 +1,9 @@
-#ifndef EXPLICITGENOMESPECIATION_SIMUL_H
-#define EXPLICITGENOMESPECIATION_SIMUL_H
+#ifndef SPECIOME_SIMUL_H
+#define SPECIOME_SIMUL_H
+
+// This is the header containing the main simulation function and some
+// accompanying functions. The core of the program was encapsulated into a
+// simulate() function in order for it to be tested separately.
 
 #include "Param.h"
 #include "GenArch.h"

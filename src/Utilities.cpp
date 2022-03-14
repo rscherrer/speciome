@@ -1,5 +1,8 @@
 #include "Utilities.h"
 
+// This is the source code with utility functions from the utl and stf
+// namespaces
+
 // Square function
 double utl::sqr(const double &number)
 {

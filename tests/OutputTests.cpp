@@ -11,8 +11,6 @@
 
 // Test the output files
 
-// One big test case in which we make sure everything is saved properly
-
 // Testing correct output files
 BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
 {

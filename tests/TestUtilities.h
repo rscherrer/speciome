@@ -1,5 +1,7 @@
-#ifndef EXPLICITGENOMESPECIATION_TESTUTILITIES_H
-#define EXPLICITGENOMESPECIATION_TESTUTILITIES_H
+#ifndef SPECIOME_TESTUTILITIES_H
+#define SPECIOME_TESTUTILITIES_H
+
+// This is a header for some utility functions used in testing
 
 #include <fstream>
 #include <vector>

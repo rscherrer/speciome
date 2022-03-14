@@ -1,5 +1,7 @@
 #include "Freezer.h"
 
+// This is the source code for the member functions of the Freezer class.
+
 // Constructor
 Freezer::Freezer() :
     freezer(new std::ofstream),

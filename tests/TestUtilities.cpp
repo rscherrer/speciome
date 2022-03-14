@@ -1,5 +1,7 @@
 #include "tests/TestUtilities.h"
 
+// Source code for the functions of the tst namespace
+
 std::vector<double> tst::readfile(const std::string &filename)
 {
     // Open the input file

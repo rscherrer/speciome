@@ -1,5 +1,7 @@
 #include "Simul.h"
 
+// This is the source code for the main simulation function
+
 int simulate(const std::vector<std::string> &args)
 {
 

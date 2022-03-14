@@ -1,5 +1,9 @@
-#ifndef EXPLICITGENOMESPECIATION_INDIVIDUAL_H
-#define EXPLICITGENOMESPECIATION_INDIVIDUAL_H
+#ifndef SPECIOME_INDIVIDUAL_H
+#define SPECIOME_INDIVIDUAL_H
+
+// This header contains the class Individual. Each Individual consists of
+// a genome from which traits can be deduced based on the genotype-phenotype map
+// (via the develop() function). Individuals can do a few other things too.
 
 #include "GenArch.h"
 #include "Utilities.h"
