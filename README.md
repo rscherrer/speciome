@@ -1,38 +1,12 @@
 # speciome
 
-Individual-based simulation of adaptive speciation with explicit genomes and genotype-phenotype map.
-
-## Snapshots
-
-These are some possible outcomes of the model (produced in R):
-
-<img src="pics/example_traits.png" alt="drawing" height="200"/> <img src="pics/example_summaries.png" alt="drawing" height="200"/>
-<img src="pics/example_fst.png" alt="drawing" height="150"/> <img src="pics/example_network.gif" alt="drawing" height="150"/>
-
-## Model description
-
-This is an individual-based simulation of a population of sexual organisms evolving in a system with two habitats linked by dispersal. Individuals can utilize two resources in their environment, and the abundances of these resources between the two habitats can be tuned. Through genetic evolution, the organisms can adapt to utilize different resources, and under some circumstances this can lead to adaptive speciation, where two reproductively isolated species emerge from a single one. 
-
-There are three quantitative traits in the model: an ecological one, a mating one and a neutral one. The ecological trait determines utilization efficiency of the two resources, which can be subject to a trade-off such that no individual can be efficient at utilizing both resources. The mating trait controls the sexual preference of females for more ecologically similar (when positive) or dissimilar (when negative) males. The target of mate choice is the ecological trait, which makes it a magic trait. The neutral trait is here for control. 
-
-Each individual has a diploid genome with a discrete number of loci, which come in either of two alleles: 0 and 1. There are loci coding for each of the three traits, and so the evolution of these traits depends on evolution at the genomic level under mutation, selection, drift, migration and recombination.
-
-This model implements different kinds of genotype-phenotype mapping scenarios (i.e. how the loci code control the traits of the individuals), encompassing the main sources of genetic variation from quantitative genetics: additive, dominance, epistatic and environmental effects. To accomodate epistatic effects in particular, each trait has its own gene regulatory network, which can be built by the simulation using a preferential attachment algorithm, or specified externally, together with the additive effects, dominance coefficients, encoded traits and locations of the loci. 
-
-The simulation can record a whole lot of variables, from the degree of reproductive isolation between the species to the genetic differentiation at each gene in the genome, and more. It can be used to test whether different genetic architectures equally lead to speciation, or to explore the traces that are left in the genome as speciation happen, in order to maybe help empiricists make better sense of the patterns found in nature.
+This repo hosts the code for a simulation of a speciation event with a complex genetic architecture. 
 
 ## About
 
 This program was written in C++14 in QtCreator 4.9.2 (Qt 5.12.4) on Ubuntu 18.04 LTS, but should run on other platforms too.
 
 This is a copy of the ExplicitGenomeSpeciation program, version 1.0. See https://github.com/rscherrer/ExplicitGenomeSpeciation for more details.
-
-## Status
-
-Branch|[![Travis CI logo](ci/pics/TravisCI.png)](https://travis-ci.org)|[![Codecov logo](ci/pics/Codecov.png)](https://www.codecov.io)
----|---|---
-master|[![Build Status](https://travis-ci.org/rscherrer/speciome.svg?branch=master)](https://travis-ci.org/rscherrer/speciome)|[![codecov.io](https://codecov.io/github/rscherrer/speciome/coverage.svg?branch=master)](https://codecov.io/github/rscherrer/speciome/branch/master)
-develop|[![Build Status](https://travis-ci.org/rscherrer/speciome.svg?branch=develop)](https://travis-ci.org/rscherrer/speciome)|[![codecov.io](https://codecov.io/github/rscherrer/speciome/coverage.svg?branch=develop)](https://codecov.io/github/rscherrer/speciome/branch/develop)
 
 ## Build
 
