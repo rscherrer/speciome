@@ -1,6 +1,12 @@
 # speciome
 
-This repo hosts the code for a simulation of a speciation event with a complex genetic architecture. 
+Simulation program for evolutionary biologists to study the dynamics of speciation with a complex genetic architectures. 
+
+## Build
+
+Under construction.
+
+
 
 ## About
 
