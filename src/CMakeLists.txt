@@ -9,7 +9,7 @@ file(GLOB_RECURSE src
 
 # instruct CMake to build the binary
 # oops, we need to add the sidelined main.cpp source file.
-add_executable(hemigene "${CMAKE_SOURCE_DIR}/main.cpp" ${src})
+add_executable(speciome "${CMAKE_SOURCE_DIR}/main.cpp" ${src})
 
 # place the binary into ./bin
 set_target_properties(speciome PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/$<0:>)
