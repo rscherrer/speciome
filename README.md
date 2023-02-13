@@ -74,13 +74,10 @@ The parameter file must contain parameter names followed by their values, for ex
 hsymmetry 1
 ecosel 0.6
 allfreq 0.2
+nvertices 30 30 30
 ```
 
-Parameters that are not provided in the parameter file will take default values. 
-
-
-
-Parameters that take multiple values must be supplied as such, with values separated by blanks (e.g. `nvertices 30 30 30`).
+Parameters that are not provided in the parameter file will take default values. Note that some parameters take multiple values. Click [here](docs/PARAMETERS.md) for a list of all parameters.
 
 We describe the different parameters (and their default value).
 
