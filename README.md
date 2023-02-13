@@ -4,7 +4,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Prerequisites
 
-* [CMake](https://github.com/rscherrer/speciome/blob/docs/CMAKE.md)
+* [CMake](docs/CMAKE.md)
 
 ```bash
 sudo apt install cmake # replace 'apt' with your distro package manager
