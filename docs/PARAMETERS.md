@@ -1,12 +1,12 @@
 ## List of parameters
 
-| name | meaning | default value |
-|--|--|--|
+| name | meaning | default value | note |
+|--|--|--|--|
 | rdynamics | Type of resource dynamics | 1 |
 | replenish | Resource growth (logistic) | 2375 |
 | capacity | Resource capacity (logistic) | 1 |
 | inflow | Resource inflow (chemostat) | 400 |
-|--|--|--|
+|--|--|--|--|
 
 Ecological parameters:
 
