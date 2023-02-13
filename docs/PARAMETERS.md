@@ -1,8 +1,11 @@
 ## List of parameters
 
-|-----------|------------------|
+
+|--|--|--|
+| name | meaning | default value |
+|--|--|--|
 | rdynamics | Type of resource dynamics | 1 |
-| 
+|--|--|--|
 
 Ecological parameters:
 
