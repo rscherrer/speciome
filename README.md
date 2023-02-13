@@ -2,8 +2,6 @@
 
 Simulation program for evolutionary biologists to study speciation with a complex genotype-phenotype map.
 
-## Prerequisites
-
 ## Build
 
 We use [vcpkg](https://github.com/microsoft/vcpkg) from Microsoft to build on multiple platforms.
