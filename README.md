@@ -1,25 +1,77 @@
 # speciome
 
-Individual-based simulation of adaptive speciation with explicit genomes and genotype-phenotype map.
+Simulation program for evolutionary biologists to study speciation with a complex genotype-phenotype map.
 
-## Snapshots
+## Prerequisites
 
-These are some possible outcomes of the model (produced in R):
+## Build
 
-<img src="pics/example_traits.png" alt="drawing" height="200"/> <img src="pics/example_summaries.png" alt="drawing" height="200"/>
-<img src="pics/example_fst.png" alt="drawing" height="150"/> <img src="pics/example_network.gif" alt="drawing" height="150"/>
+We use [vcpkg](https://github.com/microsoft/vcpkg) from Microsoft to build on multiple platforms.
+
+### Linux, MacOS
+
+To install CMake:
+
+```bash
+sudo apt install cmake # replace 'apt' with your distro package manager
+```
+
+To build the program:
+
+```bash
+git clone git@github.com:rscherrer/speciome.git
+cd speciome
+git submodule add https://github.com/microsoft/vcpkg
+git submodule update --init --remote
+mkdir build && cd build
+cmake ..
+cmake --build .
+```
+
+The executable `speciome` is built in `../bin/`.
+
+### Windows
+
+[Download](https://github.com/Kitware/CMake/releases/download/v3.23.0/cmake-3.23.0-windows-x86_64.msi) and install CMake. 
+Make sure you select the option "Add CMake to the system PATH for the current user" when asked by the installer.
+
+To build the program:
+
+```bash
+git clone git@github.com:rscherrer/speciome.git
+cd speciome
+git submodule add https://github.com/microsoft/vcpkg
+git submodule update --init --remote
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release
+```
+
+The executable `speciome.exe` is built in `../bin/`.
+
+### IDEs
+
+Many IDEs support CMake out of the box. 'Open folder' should do the trick...
+You can use CMake to generate the input files for your favorite IDE too:
+
+```bash
+git clone git@github.com:rscherrer/speciome.git
+cd speciome
+git submodule update --init --recursive
+mkdir build
+cd build
+# Generate VisualStudio project files
+cmake -G "Visual Studio 17 2022" -A x64 ..
+# Generate Xcode project files (Xcode must be installed)
+cmake -G Xcode    
+```
+
+This will place the project files in `../build`.
 
 ## Model description
 
-This is an individual-based simulation of a population of sexual organisms evolving in a system with two habitats linked by dispersal. Individuals can utilize two resources in their environment, and the abundances of these resources between the two habitats can be tuned. Through genetic evolution, the organisms can adapt to utilize different resources, and under some circumstances this can lead to adaptive speciation, where two reproductively isolated species emerge from a single one. 
-
-There are three quantitative traits in the model: an ecological one, a mating one and a neutral one. The ecological trait determines utilization efficiency of the two resources, which can be subject to a trade-off such that no individual can be efficient at utilizing both resources. The mating trait controls the sexual preference of females for more ecologically similar (when positive) or dissimilar (when negative) males. The target of mate choice is the ecological trait, which makes it a magic trait. The neutral trait is here for control. 
-
-Each individual has a diploid genome with a discrete number of loci, which come in either of two alleles: 0 and 1. There are loci coding for each of the three traits, and so the evolution of these traits depends on evolution at the genomic level under mutation, selection, drift, migration and recombination.
-
-This model implements different kinds of genotype-phenotype mapping scenarios (i.e. how the loci code control the traits of the individuals), encompassing the main sources of genetic variation from quantitative genetics: additive, dominance, epistatic and environmental effects. To accomodate epistatic effects in particular, each trait has its own gene regulatory network, which can be built by the simulation using a preferential attachment algorithm, or specified externally, together with the additive effects, dominance coefficients, encoded traits and locations of the loci. 
-
-The simulation can record a whole lot of variables, from the degree of reproductive isolation between the species to the genetic differentiation at each gene in the genome, and more. It can be used to test whether different genetic architectures equally lead to speciation, or to explore the traces that are left in the genome as speciation happen, in order to maybe help empiricists make better sense of the patterns found in nature.
+See the paper for that.
 
 ## About
 
