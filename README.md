@@ -36,13 +36,12 @@ The executable `speciome.exe` is built in `../bin/`.
 
 ### IDEs
 
-Many IDEs support CMake out of the box. 'Open folder' should do the trick...
+Many IDEs support CMake out of the box. "Open folder" should do the trick...
 You can use CMake to generate the input files for your favorite IDE too:
 
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
-git submodule update --init --recursive
 mkdir build
 cd build
 # Generate VisualStudio project files
