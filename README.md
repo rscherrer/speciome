@@ -69,18 +69,7 @@ cmake -G Xcode
 
 This will place the project files in `../build`.
 
-## Status
-
-Branch|[![Travis CI logo](ci/pics/TravisCI.png)](https://travis-ci.org)|[![Codecov logo](ci/pics/Codecov.png)](https://www.codecov.io)
----|---|---
-master|[![Build Status](https://travis-ci.org/rscherrer/speciome.svg?branch=master)](https://travis-ci.org/rscherrer/speciome)|[![codecov.io](https://codecov.io/github/rscherrer/speciome/coverage.svg?branch=master)](https://codecov.io/github/rscherrer/speciome/branch/master)
-develop|[![Build Status](https://travis-ci.org/rscherrer/speciome.svg?branch=develop)](https://travis-ci.org/rscherrer/speciome)|[![codecov.io](https://codecov.io/github/rscherrer/speciome/coverage.svg?branch=develop)](https://codecov.io/github/rscherrer/speciome/branch/develop)
-
-## Build
-
-All the source and header files needed are in the `src` folder. The main function is in the `main.cpp` file.
-
-## Usage
+## Use
 
 The program has a command-line interface (CLI). Running it on its own will run a simulation with default parameters (see below). Non-default parameters can be specified by providing a parameter file, i.e. a text file containing on each row the name of a parameter and the value it should take (e.g. `mutation 0.0001`). It should look something like:
 
