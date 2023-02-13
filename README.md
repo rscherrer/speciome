@@ -54,15 +54,33 @@ This will place the project files in `../build`.
 
 ## Use
 
-The program has a command-line interface (CLI). Running it on its own will run a simulation with default parameters (see below). Non-default parameters can be specified by providing a parameter file, i.e. a text file containing on each row the name of a parameter and the value it should take (e.g. `mutation 0.0001`). It should look something like:
+Run a simulation with default parameters with:
+
+```
+./speciome 
+```
+
+Or provide a parameter file with non-default parameter values:
 
 ```
 ./speciome parameters.txt
 ```
 
-## Parameters
+### Parameter file
 
-Non-default parameters are supplied in a parameter file. The parameter file must contain on each line, the name of one parameter followed by a blank (e.g. space or tab) and the value(s) that this parameter must take. Parameter names must match those in the table. Parameters that are not in the parameter file will take default values. Parameters that take multiple values must be supplied as such, with values separated by blanks (e.g. `nvertices 30 30 30`).
+The parameter file must contain parameter names followed by their values, for example:
+
+```
+hsymmetry 1
+ecosel 0.6
+allfreq 0.2
+```
+
+Parameters that are not provided in the parameter file will take default values. 
+
+
+
+Parameters that take multiple values must be supplied as such, with values separated by blanks (e.g. `nvertices 30 30 30`).
 
 We describe the different parameters (and their default value).
 
