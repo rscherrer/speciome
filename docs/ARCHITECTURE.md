@@ -35,11 +35,11 @@ weights 2 0.1 0.1 0.1
 
 * Under the "--architecture--" header are expected the names and values of the actual architecture fields, which are essentially lists of parameters. There are three kinds of fields, that differ in how many values they take: chromosome-wise fields, locus-wise fields and edge-wise fields.
 
-- Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
+  * Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
 
-- Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
+  * Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
 
-- Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
+  * Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
 
 * Each field should be followed by the values it takes (e.g. `chromosomes 0.333333 0.666667 1`, `locations 0.01 0.02 0.45 0.6 0.8 0.9`), but if the field is an edge-wise field the values should be preceded by the index of the trait of the network that field belongs to (e.g. `weights 0 0.56 0.37 -0.45 0.67 0.1 -0.89`, where 0 in second position refers to the ecological trait). Fields and values are all separated by spaces.
 
