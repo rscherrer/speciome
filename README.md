@@ -5,13 +5,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 ## Prerequisites
 
 * [CMake](docs/CMAKE.md)
-
-```bash
-sudo apt install cmake # replace 'apt' with your distro package manager
-```
-
-[Download](https://github.com/Kitware/CMake/releases/download/v3.23.0/cmake-3.23.0-windows-x86_64.msi) and install CMake. 
-Make sure you select the option "Add CMake to the system PATH for the current user" when asked by the installer.
+* C++20
 
 ## Build
 
@@ -20,44 +14,23 @@ Make sure you select the option "Add CMake to the system PATH for the current us
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
-git submodule add https://github.com/microsoft/vcpkg
-git submodule update --init --remote
 mkdir build && cd build
 cmake ..
 cmake --build .
 ```
 
-### Windows
+The executable `speciome` is built in `../bin/`.
 
-To build the program:
+### Windows
 
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
-git submodule add https://github.com/microsoft/vcpkg
-git submodule update --init --remote
 mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
 ```
-
-
-to build the program and [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencies.
-
-
-
-To install CMake:
-
-
-
-To build the program:
-
-
-
-The executable `speciome` is built in `../bin/`.
-
-
 
 The executable `speciome.exe` is built in `../bin/`.
 
