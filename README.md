@@ -4,7 +4,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Build
 
-We use [vcpkg](https://github.com/microsoft/vcpkg) to install the necessary libraries and CMake as a build system.
+We use [vcpkg](https://github.com/microsoft/vcpkg) to install the necessary libraries and [CMake](https://cmake.org) as build system.
 
 ### Linux, MacOS
 
