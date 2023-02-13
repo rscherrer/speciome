@@ -47,4 +47,3 @@
 | parsave | Whether to save parameters | 1 | Yes (1) or no (0). |
 | logsave | Screen output to file | 0 | Yes (1) or no (0). |
 | seed | Random number generator seed | Clock-generated | |
-|--|--|--|--|
