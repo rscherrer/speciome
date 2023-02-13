@@ -87,6 +87,64 @@ This program runs an individual-based simulation where agents live, reproduce an
 
 The genetic architecture refers to the constant features of the genotype-phenotype map. Those are features that do not change through time and cannot evolve, including e.g. the number of chromosomes, numbers and positions of loci and topologies and interaction weights of the gene networks. If `archload` is set to 0, a new architecture is generated at the beginning of the simulation. Otherwise, the program will read an architecture from a file `architecture.txt` that must be present in the working directory. Click [here](docs/ARCHITECTURE.md) to see what a genetic architecture file should look like.
 
+### Saving data
+
+Set `datsave` to 1 to allow data recording. The data are saved into binary `*.dat` files:
+
+* `time.dat`: every saved time point
+* `population_sizes.dat`: total population size (so across both habitats)
+* `ecotype_population_sizes.dat`: population size of each ecotype
+* `habitat_resources.dat`: equilibrium resource concentration of each resource in each habitat
+* `trait_means.dat`: mean value of each trait across the whole population
+* `trait_ecotype_means.dat`: mean value of each trait in each ecotype
+* `trait_varP.dat`, `trait_varG.dat`, `trait_varA.dat`, `trait_varD.dat`, `trait_varI.dat`, `trait_varN.dat`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait
+* `trait_varT.dat`: variance in allele frequencies across loci coding for each trait
+* `trait_Pst.dat`, `trait_Gst.dat`, `trait_Qst.dat`, `trait_Cst.dat`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
+* `trait_Fst.dat`: fixation index, or genetic differentiation between the two ecotypes, for each trait
+* `EI.dat`, `SI.dat`, `RI.dat`: ecological, spatial and reproductive isolation between ecotypes, respectively.
+* `locus_varP.dat`, `locus_varG.dat`, `locus_varA.dat`, `locus_varD.dat`, `locus_varI.dat`, `locus_varN.dat`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
+* `locus_Pst.dat`, `locus_Gst.dat`, `locus_Qst.dat`, `locus_Cst.dat`, `locus_Fst.dat`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
+* `locus_alpha.dat`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
+* `locus_meang.dat`: the mean genetic value of each locus in the whole population
+* `locus_freq.dat`: the allele frequency (of the 1-allele) for each locus in the whole population
+* `locus_ecotype_freq.dat`: the allele frequencies for each locus within each ecotype
+* `locus_ecotype_hobs.dat`: the observed heterozygosity for each locus within each ecotype
+* `edge_corgen.dat`, `edge_corbreed.dat`, `edge_corfreq.dat`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
+* `edge_avgi.dat`, `edge_avgj.dat`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
+* `individual_ecotypes.dat`, `individual_habitats.dat`: the ecotype and habitat of each individual
+* `individual_traits.dat`: the value of each trait for each individual
+* `individual_midparents.dat`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
+
+
+This means that each variable is saved as a vector of values (64 bit double precision floating point numbers). 
+
+The following variables are saved every `tsave` timepoint:
+
+
+
+By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
+
+**Note:** the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling can affect the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
+
+## Saving whole individual genomes
+
+Saving the whole genomes of all individuals through time takes a lot of space, for this reason this output is controlled separately from the other output variables. If you set `gensave 1` in addition to `datsave 1` two things will be saved every `tsave` generations: (1) the whole genomes of all individuals in `individual_whole_genomes.dat`, and (2) the genetic values at every locus for every individual in `individual_locus_genvalues.dat`. Both files are binary data files.
+
+1. Whole genomes are encoded in the freezer file in a different way from other variables. To save space, we use the fact that alleles are binary (0 or 1). Each value in a full genome is an allele at a specific position along one of the two haplotypes of an individual. Therefore, a genome contains twice as many values as there are loci, because the organisms are diploid. Each value is either 0 or 1 (the two possible alleles). Haplotypes are saved in turns, such that the first N values are all alleles of the first haplotype and the next N values are all alleles of the second haplotype, if N is the total number of loci. This does not mean that each saved individual genome is exactly 2N values long, though. In order to save space for this large amount of data, individual genomes are first split into blocks of 64 bits, and each block is converted into a 64bit integer, which is then saved as binary. Therefore, the output file `individual_whole_genomes.dat` must be interpreted on a bit-wise basis in order to retrieve the actual alleles of the individual (i.e. reading it as 64bit integers will show integer equivalents of chunks of 64 alleles). This also means that for each individual, a multiple of 64 bits will be written to the file, even if 2N alleles is not necessarily a multiple of 64. In other words, for each individual 2N bits will be written to file, and the remaining part of the last 64bit-chunk will be filled with zeros.
+
+2. Genetic values across the genome for each individual are stored in `individual_locus_genvalues.dat` as floating point numbers encoded into a binary file, just as the other output variables, but with one value per locus per individual, per time point. 
+
+**Important:** whole individual genomes take a lot of space. For this reason we advise against saving them too often. Unfortunately it is not possible to save some variables at a certain frequency and individual genomes less frequently in one simulation, as there is only one `tsave`. To collect data on different timelines, however, it is possible to run multiple simulations with the same `seed`. This can be done either by choosing a seed beforehand, or by saving the random seed of the first simulation (it will be saved in the parameter-log file `paramlog.txt` if `parsave 1`) and use it as `seed` to parametrize the next simulations.
+
+## Which variables to save
+
+Some variables need other variables to be saved in order to be interpreted down the line. For example, `time` must be saved in order for the recorded time points to be appended to the resulting data tables. Or, the `population_sizes` in each recorded time point must be known for each individual to be assigned a time point in `individual_*` variables and in individual whole genomes.
+
+In general we advise the following:
+
+* have the genetic architecture at hand (e.g. `archsave 1`) to interpret the genetic data you might save (`locus_*`, `edge_*` and whole individual genomes)
+* save `time`, as it is useful information for any of the other variables
+* save `population_sizes` whenever `individual_*` variables or whole individual genomes are saved
 
 
 
@@ -140,59 +198,6 @@ General simulation parameters:
 
 Note that it is a good idea to set `parsave 1` and `logsave 1`, to make sure the full range of parameter values can be retrieved or the simulation progress can be monitored. Some analysis functions from the R package [speciomer](https://github.com/rscherrer/speciomer) actually expect the parameter-log file "paramlog.txt" to be present.
 
-## Saving data
-
-Many outputs can be saved through time in the simulation. To save the recorded data, set `datsave 1`. To save time and space, the data are saved as `.dat` binary files, with one file per variable. This means that each variable is saved as a vector of values (64 bit double precision floating point numbers). 
-
-The following variables are saved every `tsave` timepoint:
-
-* `time`: every saved time point
-* `population_sizes`: total population size (so across both habitats)
-* `ecotype_population_sizes`: population size of each ecotype
-* `habitat_resources`: equilibrium resource concentration of each resource in each habitat
-* `trait_means`: mean value of each trait across the whole population
-* `trait_ecotype_means`: mean value of each trait in each ecotype
-* `trait_varP`, `trait_varG`, `trait_varA`, `trait_varD`, `trait_varI`, `trait_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait
-* `trait_varT`: variance in allele frequencies across loci coding for each trait
-* `trait_Pst`, `trait_Gst`, `trait_Qst`, `trait_Cst`: respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait
-* `trait_Fst`: fixation index, or genetic differentiation between the two ecotypes, for each trait
-* `EI`, `SI`, `RI`: ecological, spatial and reproductive isolation between ecotypes, respectively.
-* `locus_varP`, `locus_varG`, `locus_varA`, `locus_varD`, `locus_varI`, `locus_varN`: respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome
-* `locus_Pst`, `locus_Gst`, `locus_Qst`, `locus_Cst`, `locus_Fst`: respectively the Pst, Gst, Qst, Cst and Fst for each locus
-* `locus_alpha`: the average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus
-* `locus_meang`: the mean genetic value of each locus in the whole population
-* `locus_freq`: the allele frequency (of the 1-allele) for each locus in the whole population
-* `locus_ecotype_freq`: the allele frequencies for each locus within each ecotype
-* `locus_ecotype_hobs`: the observed heterozygosity for each locus within each ecotype
-* `edge_corgen`, `edge_corbreed`, `edge_corfreq`: respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait)
-* `edge_avgi`, `edge_avgj`: the expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners.
-* `individual_ecotypes`, `individual_habitats`: the ecotype and habitat of each individual
-* `individual_traits`: the value of each trait for each individual
-* `individual_midparents`: the midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual 
-
-By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
-
-**Note:** the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling can affect the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
-
-## Saving whole individual genomes
-
-Saving the whole genomes of all individuals through time takes a lot of space, for this reason this output is controlled separately from the other output variables. If you set `gensave 1` in addition to `datsave 1` two things will be saved every `tsave` generations: (1) the whole genomes of all individuals in `individual_whole_genomes.dat`, and (2) the genetic values at every locus for every individual in `individual_locus_genvalues.dat`. Both files are binary data files.
-
-1. Whole genomes are encoded in the freezer file in a different way from other variables. To save space, we use the fact that alleles are binary (0 or 1). Each value in a full genome is an allele at a specific position along one of the two haplotypes of an individual. Therefore, a genome contains twice as many values as there are loci, because the organisms are diploid. Each value is either 0 or 1 (the two possible alleles). Haplotypes are saved in turns, such that the first N values are all alleles of the first haplotype and the next N values are all alleles of the second haplotype, if N is the total number of loci. This does not mean that each saved individual genome is exactly 2N values long, though. In order to save space for this large amount of data, individual genomes are first split into blocks of 64 bits, and each block is converted into a 64bit integer, which is then saved as binary. Therefore, the output file `individual_whole_genomes.dat` must be interpreted on a bit-wise basis in order to retrieve the actual alleles of the individual (i.e. reading it as 64bit integers will show integer equivalents of chunks of 64 alleles). This also means that for each individual, a multiple of 64 bits will be written to the file, even if 2N alleles is not necessarily a multiple of 64. In other words, for each individual 2N bits will be written to file, and the remaining part of the last 64bit-chunk will be filled with zeros.
-
-2. Genetic values across the genome for each individual are stored in `individual_locus_genvalues.dat` as floating point numbers encoded into a binary file, just as the other output variables, but with one value per locus per individual, per time point. 
-
-**Important:** whole individual genomes take a lot of space. For this reason we advise against saving them too often. Unfortunately it is not possible to save some variables at a certain frequency and individual genomes less frequently in one simulation, as there is only one `tsave`. To collect data on different timelines, however, it is possible to run multiple simulations with the same `seed`. This can be done either by choosing a seed beforehand, or by saving the random seed of the first simulation (it will be saved in the parameter-log file `paramlog.txt` if `parsave 1`) and use it as `seed` to parametrize the next simulations.
-
-## Which variables to save
-
-Some variables need other variables to be saved in order to be interpreted down the line. For example, `time` must be saved in order for the recorded time points to be appended to the resulting data tables. Or, the `population_sizes` in each recorded time point must be known for each individual to be assigned a time point in `individual_*` variables and in individual whole genomes.
-
-In general we advise the following:
-
-* have the genetic architecture at hand (e.g. `archsave 1`) to interpret the genetic data you might save (`locus_*`, `edge_*` and whole individual genomes)
-* save `time`, as it is useful information for any of the other variables
-* save `population_sizes` whenever `individual_*` variables or whole individual genomes are saved
 
 ## Misc
 
