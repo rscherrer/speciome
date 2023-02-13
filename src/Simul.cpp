@@ -1,4 +1,4 @@
-#include "Simul.h"
+#include "Simul.hpp"
 
 // This is the source code for the main simulation function
 

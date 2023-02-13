@@ -7,7 +7,7 @@ if (Boost_FOUND)
 	# model 'unit' files
 	file(GLOB_RECURSE unit ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
-	set(TESTS tests)
+	set(TESTS CollectorTests GenArchTests IndividualTests MetaPopTests OutputTests SimulTests)
 
 	foreach(TEST IN LISTS TESTS)
 		add_executable(${TEST} ${CMAKE_SOURCE_DIR}/tests/${TEST}.cpp ${unit})

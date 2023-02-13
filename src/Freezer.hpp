@@ -1,5 +1,5 @@
-#ifndef SPECIOME_FREEZER_H
-#define SPECIOME_FREEZER_H
+#ifndef SPECIOME_FREEZER_HPP
+#define SPECIOME_FREEZER_HPP
 
 // This module is a special printer used for saving individual full genomes,
 // directly from the MetaPop.
@@ -9,9 +9,9 @@
 // The resulting binary output file should therefore be interpreted as
 // a bit-wise array; each value (allele) is encoded by a single bit.
 
-#include "Utilities.h"
-#include "MetaPop.h"
-#include "Printer.h"
+#include "Utilities.hpp"
+#include "MetaPop.hpp"
+#include "Printer.hpp"
 #include <cassert>
 
 class Freezer

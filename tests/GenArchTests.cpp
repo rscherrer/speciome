@@ -1,6 +1,8 @@
-#include "src/GenArch.h"
-#include "src/Random.h"
-#include "src/Utilities.h"
+#define BOOST_TEST_MODULE GenArchTests
+
+#include "../src/GenArch.hpp"
+#include "../src/Random.hpp"
+#include "../src/Utilities.hpp"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 #include <cassert>

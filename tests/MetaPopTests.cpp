@@ -1,6 +1,8 @@
-#include "src/MetaPop.h"
-#include "src/Collector.h"
-#include "src/Utilities.h"
+#define BOOST_TEST_MODULE MetapopTests
+
+#include "../src/MetaPop.hpp"
+#include "../src/Collector.hpp"
+#include "../src/Utilities.hpp"
 #include <boost/test/unit_test.hpp>
 
 // Tests of the good behavior of a metapopulation object

@@ -1,4 +1,4 @@
-#include "Param.h"
+#include "Param.hpp"
 
 // This is the source code for the member functions of the Param class.
 
