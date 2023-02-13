@@ -2,11 +2,69 @@
 
 | name | meaning | default value | note |
 |--|--|--|--|
-| rdynamics | Type of resource dynamics | 1 |
-| replenish | Resource growth (logistic) | 2375 |
-| capacity | Resource capacity (logistic) | 1 |
-| inflow | Resource inflow (chemostat) | 400 |
+| rdynamics | Type of resource dynamics | 1 | |
+| replenish | Resource growth (logistic) | 2375 | |
+| capacity | Resource capacity (logistic) | 1 | |
+| inflow | Resource inflow (chemostat) | 400 | |
+| outflow | Resource outflow (chemostat) | 100 | |
+| hsymmetry | Habitat symmetry | 0 | |
+| ecosel | Trade-off strength | 1.8 | |
+| ecoscale | Ecological scale | 1 | |
+| demesizes | Initial population sizes | 100 0 | |
+| dispersal | Dispersal rate | 0.01 | |
+| birth | Baseline birth rate | 1 | |
+| survival | Survival rate | 0.8 | |
+| sexsel | Sexual selection coefficient | 10 | |
+| matingcost | Cost of choosiness | 0.01 | |
+| ntrials | Number of mating trials | 100 | |
+| nvertices | Numbers of loci | 30 30 30 | |
+| nedges | Numbers of edges | 30 30 30 | |
+| nchrom | Number of chromosomes | 3 | |
+| mutation | Mutation rate | 0.001 | |
+| recombination | Recombination rate | 3 | |
+| allfreq | Initial allele frequency | 0.2 | |
+| scaleA | Scaling for additive effects | 1 1 1 | |
+| scaleD | Scaling for dominance | 0 0 0 | |
+| scaleI | Scaling for epistasis | 0 0 0 | |
+| scaleE | Scaling for environmental effects | 0 0 0 | |
+| skews | Network skewness | 1 1 1 | |
+| effectshape | Shape of effet size-distribution | 2 | |
+| effectscale | Scale of effect size-distribution | 1 | |
+| interactionshape | Shape of interaction weight-distribution | 5 | |
+| interactionscale | Scale of interaction weight-distribution | 1 | |
+| dominancevar | Standard deviation of dominance coefficient-distribution | 1 | |
+| tburnin | Burn-in duration | 0 | |
+| tend | Simulation time | 10 | |
+| tsave | Saving frequency | 10 | |
+| tcomplete | Speciation completion time | 1000000 | |
+| talkative | Verbose | 1 | |
+| choosewhattosave | Whether to save specific variables | 0 | |
+| datsave | Whether to save to file | 1 | |
+| burninsave | Whether to save the burn-in | 0 | |
+| gensave | Whether genomes should be saved | 0 | |
+| archsave | Whether to save architecture | 0 | |
+| archload | Whether to load architecture | 0 | |
+| parsave | Whether to save parameters | 1 | |
+| logsave | Screen output to file | 0 | |
+| seed | Random number generator seed | Clock-generated | |
+
 |--|--|--|--|
+
+* `tburnin` (0) is the duration of the burn-in period, in generations
+* `tend` (10) is the number of generations to simulate (use a negative value to end the simulation during the burn-in)
+* `tsave` (10) is the frequency at which to record the data
+* `tcomplete` (1000000) is the time at which to force complete reproductive isolation between the two ecotypes (can mimic e.g. genomic incompatibilities between the two species, or the evolution of very good species recognition abilities)
+* `talkative` (1) is either 0 or 1 and sets whether the simulation should print status information to the prompt
+* `choosewhattosave` (0) is either 0 or 1 and sets whether the variables to save are specified in a separate file, the order file `whattosave.txt` (see below). If 0 all of the output variables are saved every `tsave` generations except for whole genomes
+* `datsave` (1) sets whether to save the recorded variables to files
+* `burninsave` (0) sets whether to save data during the burn-in phase too (time points belonging to the burn-in are negative)
+* `gensave` (0) is either 0 or 1 and sets whether whole genomes should be saved every `tfreeze` generations (see below)
+* `archsave` (0) is either 0 or 1 and sets whether the genetic architecture should be saved into file `architecture.txt` (see below)
+* `archload` (0) sets whether the genetic architecture of the simulation should be loaded from file `architecture.txt` instead of generated anew
+* `parsave` (1) sets whether to save the parameters of the simulation run to file, including the random seed, into a parameter-log file `paramlog.txt`
+* `logsave` (0) sets whether the output to prompt should be redirected to a log file `log.txt`
+* `seed` is the seed of the random number generator, and it is by default randomly generated based on the clock
+
 
 Ecological parameters:
 
