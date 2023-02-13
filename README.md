@@ -2,19 +2,20 @@
 
 Simulation program for evolutionary biologists to study speciation with a complex genotype-phenotype map.
 
-## Build
+## Prerequisites
 
-We use [CMake](https://cmake.org) to build the program and [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencies.
-
-### Linux, MacOS
-
-To install CMake:
+* CMake
 
 ```bash
 sudo apt install cmake # replace 'apt' with your distro package manager
 ```
 
-To build the program:
+[Download](https://github.com/Kitware/CMake/releases/download/v3.23.0/cmake-3.23.0-windows-x86_64.msi) and install CMake. 
+Make sure you select the option "Add CMake to the system PATH for the current user" when asked by the installer.
+
+## Build
+
+### Linux, MacOS
 
 ```bash
 git clone git@github.com:rscherrer/speciome.git
@@ -26,12 +27,7 @@ cmake ..
 cmake --build .
 ```
 
-The executable `speciome` is built in `../bin/`.
-
 ### Windows
-
-[Download](https://github.com/Kitware/CMake/releases/download/v3.23.0/cmake-3.23.0-windows-x86_64.msi) and install CMake. 
-Make sure you select the option "Add CMake to the system PATH for the current user" when asked by the installer.
 
 To build the program:
 
@@ -45,6 +41,23 @@ cd build
 cmake ..
 cmake --build . --config Release
 ```
+
+
+to build the program and [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencies.
+
+
+
+To install CMake:
+
+
+
+To build the program:
+
+
+
+The executable `speciome` is built in `../bin/`.
+
+
 
 The executable `speciome.exe` is built in `../bin/`.
 
