@@ -69,16 +69,6 @@ cmake -G Xcode
 
 This will place the project files in `../build`.
 
-## Model description
-
-See the paper for that.
-
-## About
-
-This program was written in C++14 in QtCreator 4.9.2 (Qt 5.12.4) on Ubuntu 18.04 LTS, but should run on other platforms too.
-
-This is a copy of the ExplicitGenomeSpeciation program, version 1.0. See https://github.com/rscherrer/ExplicitGenomeSpeciation for more details.
-
 ## Status
 
 Branch|[![Travis CI logo](ci/pics/TravisCI.png)](https://travis-ci.org)|[![Codecov logo](ci/pics/Codecov.png)](https://www.codecov.io)
@@ -229,6 +219,12 @@ In general we advise the following:
 * have the genetic architecture at hand (e.g. `archsave 1`) to interpret the genetic data you might save (`locus_*`, `edge_*` and whole individual genomes)
 * save `time`, as it is useful information for any of the other variables
 * save `population_sizes` whenever `individual_*` variables or whole individual genomes are saved
+
+## Misc
+
+This program was written in C++14 in QtCreator 4.9.2 (Qt 5.12.4) on Ubuntu 18.04 LTS, but should run on other platforms too.
+
+This is a copy of the ExplicitGenomeSpeciation program, version 1.0. See https://github.com/rscherrer/ExplicitGenomeSpeciation for more details.
 
 ## Disclaimer
 
