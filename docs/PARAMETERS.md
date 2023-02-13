@@ -1,6 +1,6 @@
 ## List of parameters
 
-| name | meaning | default value | note |
+| Name | Meaning | Default | Note |
 |--|--|--|--|
 | rdynamics | Type of resource dynamics | 1 | The resource dynamics can be logistic (0) or chemostat-like (1). |
 | replenish | Resource growth (logistic) | 2375 | Growth rate of the resource. |
