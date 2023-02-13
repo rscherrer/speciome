@@ -79,6 +79,34 @@ nvertices 30 30 30
 
 Parameters that are not provided in the parameter file will take default values. Note that some parameters take multiple values. Click [here](docs/PARAMETERS.md) for a list of all parameters.
 
+### Model description
+
+This program runs an individual-based simulation where agents live, reproduce and die, through thousands of generations. Individuals have traits that are genetically encoded and can evolve. The model is built in such a way that under the right conditions, the population may split into two phenotypically distinct and reproductively isolated clusters, or species (i.e. speciaiton has happened). Importantly, the genotype codes for the phenotype in a nonlinear way allowing not only additive but also dominance, epistatic and environmental effects. See the accompanying manuscript for more information.
+
+### Genetic architecture
+
+The genetic architecture refers to the constant features of the genotype-phenotype map. Those are features that do not change through time and cannot evolve, including e.g. the number of chromosomes, numbers and positions of loci and topologies and interaction weights of the gene networks. If `archload` is set to 0, a new architecture is generated at the beginning of the simulation. Otherwise, the program will read an architecture from a file `architecture.txt` that must be present in the working directory. Click here to see what a genetic architecture file should look like.
+
+The architecture file is a text file organized in two sections, each delimited by the header "--parameters--" or "--architecture--". 
+
+1. Under the "--parameters--" header are expected the names and values of parameters (or rather hyperparameters) that are important for the set-up of the genetic architecture. Those are `nchrom`, `nvertices` and `nedges`, and should be provided just like in a parameter file (see above). They will be used to read the right numer of entries from the following section, and to override the parameters in the model once the architecture is loaded.
+
+2. Under the "--architecture--" header are expected the names and values of the actual architecture fields, which are essentially lists of parameters. There are three kinds of fields, that differ in how many values they take: chromosome-wise fields, locus-wise fields and edge-wise fields.
+
+* Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
+
+* Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
+
+* Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
+
+Each field should be followed by the values it takes (e.g. `chromosomes 0.333333 0.666667 1`, `locations 0.01 0.02 0.45 0.6 0.8 0.9`), but if the field is an edge-wise field the values should be preceded by the index of the trait of the network that field belongs to (e.g. `weights 0 0.56 0.37 -0.45 0.67 0.1 -0.89`, where 0 in second position refers to the ecological trait). Fields and values are all separated by spaces.
+
+A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file `architecture.txt`). For any other architecture file supplied, you need to make sure that the aforementioned expected structure is respected and that all the necessary fields are present.
+
+Note that in general it is a good idea to save the genetic architecture used if you are going to save and analyze genetic data from the simulation, as the output variables do not contain details about the architecture, which might make them difficult to interpret otherwise.
+
+
+
 We describe the different parameters (and their default value).
 
 Ecological parameters:
@@ -128,30 +156,6 @@ General simulation parameters:
 * `seed` is the seed of the random number generator, and it is by default randomly generated based on the clock
 
 Note that it is a good idea to set `parsave 1` and `logsave 1`, to make sure the full range of parameter values can be retrieved or the simulation progress can be monitored. Some analysis functions from the R package [speciomer](https://github.com/rscherrer/speciomer) actually expect the parameter-log file "paramlog.txt" to be present.
-
-## Genetic architecture
-
-The genetic architecture refers to the constant features of the genetic part of the program, that is, features that do not change through time and cannot evolve. These include the number of chromosomes, the numbers of loci and edges for each trait, the trait each locus codes for as well as its location in the genome, its additive effect size and its dominance coefficient, and finally the topology and distribution of interaction weights across edges within each of the three gene networks (one for each trait, the networks are independent).
-
-A genetic architecture can either be generated anew at the beginning of a simulation by randomly sampling the aforementioned features and building networks with a random preferential attachment algorithm, or it can be supplied to the program in an architecture file `architecture.txt`. To load the genetic architecture from an architecture file, make sure to set parameter `archload` to 1.
-
-The architecture file is a text file organized in two sections, each delimited by the header "--parameters--" or "--architecture--". 
-
-1. Under the "--parameters--" header are expected the names and values of parameters (or rather hyperparameters) that are important for the set-up of the genetic architecture. Those are `nchrom`, `nvertices` and `nedges`, and should be provided just like in a parameter file (see above). They will be used to read the right numer of entries from the following section, and to override the parameters in the model once the architecture is loaded.
-
-2. Under the "--architecture--" header are expected the names and values of the actual architecture fields, which are essentially lists of parameters. There are three kinds of fields, that differ in how many values they take: chromosome-wise fields, locus-wise fields and edge-wise fields.
-
-* Chromosome-wise field: `chromosomes`, consisting of the end location of each chromosome (between 0 and 1, each representing the two ends of the genomes). One value per chromosome.
-
-* Locus-wise fields: `traits`, `locations`, `effects` and `dominances` are the encoded traits (0, 1, or 2), genomic locations (between 0 and 1), additive effect sizes and dominance coefficients of each locus in the genome, respectively. One value per locus.
-
-* Edge-wise fields: `from`, `to` and `weights` are respectively the indices of the first and second partner, and the interaction weight, of each edge. One value per edge. 
-
-Each field should be followed by the values it takes (e.g. `chromosomes 0.333333 0.666667 1`, `locations 0.01 0.02 0.45 0.6 0.8 0.9`), but if the field is an edge-wise field the values should be preceded by the index of the trait of the network that field belongs to (e.g. `weights 0 0.56 0.37 -0.45 0.67 0.1 -0.89`, where 0 in second position refers to the ecological trait). Fields and values are all separated by spaces.
-
-A randomly generated genetic architecture can be saved as a ready-to-use architecture file if `archsave` is set to 1 (in this case the architecture will be saved in the file `architecture.txt`). For any other architecture file supplied, you need to make sure that the aforementioned expected structure is respected and that all the necessary fields are present.
-
-Note that in general it is a good idea to save the genetic architecture used if you are going to save and analyze genetic data from the simulation, as the output variables do not contain details about the architecture, which might make them difficult to interpret otherwise.
 
 ## Saving data
 
