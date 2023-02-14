@@ -10,6 +10,8 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Build
 
+(Click [here](docs/BUILD.md) to build as developer.)
+
 ### Linux, MacOS
 
 ```bash
@@ -24,7 +26,7 @@ The executable `speciome` is built in `../bin/`.
 
 ### Windows
 
-```bash
+```cmd
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
 mkdir build
