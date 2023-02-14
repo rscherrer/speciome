@@ -19,6 +19,7 @@ Here are instructions to build with CMake, but you can compile the source code w
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
+cp CMakeLists_user.txt CMakeLists.txt # user configuration
 mkdir build && cd build
 cmake ..
 cmake --build .
@@ -31,6 +32,7 @@ The executable `speciome` is built in `../bin/`.
 ```cmd
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
+copy CMakeLists_user.txt CMakeLists.txt :: user configuration
 mkdir build
 cd build
 cmake ..
@@ -46,7 +48,8 @@ You can use CMake to generate the input files for your favorite IDE too:
 
 ```bash
 git clone git@github.com:rscherrer/speciome.git
-cd speciome
+cd speciom
+cp CMakeLists_user.txt CMakeLists.txt # user configuration
 mkdir build
 cd build
 # Generate VisualStudio project files

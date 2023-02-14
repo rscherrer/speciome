@@ -9,6 +9,7 @@ This uses [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencie
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
+cp CMakeLists_devel.txt CMakeLists.txt # developer configuration
 git submodule add https://github.com/microsoft/vcpkg
 git submodule update --init --remote
 mkdir build && cd build
@@ -23,6 +24,7 @@ Executables for tests are built in `bin/tests/`.
 ```cmd
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
+copy CMakeLists_devel.txt CMakeLists.txt :: developer configuration
 git submodule add https://github.com/microsoft/vcpkg
 git submodule update --init --remote
 mkdir build
@@ -38,6 +40,7 @@ Executables for tests are built in `bin/tests/`.
 ```bash
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
+cp CMakeLists_devel.txt CMakeLists.txt # developer configuration
 git submodule update --init --recursive
 mkdir build
 cd build
