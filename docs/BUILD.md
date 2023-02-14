@@ -1,8 +1,10 @@
 ## Build (developer)
 
-We use [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencies needed to build as developer:
+This uses [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencies needed to build as developer:
 
-* [Boost.Test](https://github.com/boostorg/test) (latest version)
+* [Boost.Test](https://github.com/boostorg/test) (latest version) for unit testing
+
+Executables for tests are built in `bin/tests/`.
 
 ### Linux, MacOS
 
@@ -28,6 +30,7 @@ cd build
 cmake ..
 cmake --build . --config Release
 ```
+
 
 ### IDEs
 
