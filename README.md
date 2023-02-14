@@ -77,7 +77,7 @@ allfreq 0.2
 nvertices 30 30 30
 ```
 
-Parameters that are not provided in the parameter file will take default values. Note that some parameters take multiple values. Click [here](docs/PARAMETERS.md) for a list of all parameters.
+Parameters that are not provided in the parameter file will take default values. Beware that some parameters take multiple values. Click [here](docs/PARAMETERS.md) for a list of all parameters. To allow for replication, if `parsave` is set to 1, the parameters used in the simulation (including any automatically-generated `seed`) will be saved into a file named `paramlog.txt` within the working directory.
 
 ### Model description
 
@@ -85,7 +85,7 @@ This program runs an individual-based simulation where agents live, reproduce an
 
 ### Genetic architecture
 
-The genetic architecture refers to the constant features of the genotype-phenotype map. Those are features that do not change through time and cannot evolve, including e.g. the number of chromosomes, numbers and positions of loci and topologies and interaction weights of the gene networks. If `archload` is set to 0, a new architecture is generated at the beginning of the simulation. Otherwise, the program will read an architecture from a file `architecture.txt` that must be present in the working directory. Click [here](docs/ARCHITECTURE.md) to see what a genetic architecture file should look like.
+The genetic architecture refers to the constant features of the genotype-phenotype map. Those are features that do not change through time and cannot evolve, including e.g. the number of chromosomes, numbers and positions of loci and topologies and interaction weights of the gene networks. If `archload` is set to 0, a new architecture is generated at the beginning of the simulation. Otherwise, the program will read an architecture from a file `architecture.txt` that must be present in the working directory. Click [here](docs/ARCHITECTURE.md) to see what a genetic architecture file should look like. If `archsave` is set to 1, the architecture that was used in the simulation (whether generated or provided) will be saved into `architecture.txt`.
 
 ### Saving data
 
