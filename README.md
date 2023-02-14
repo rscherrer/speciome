@@ -4,7 +4,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Prerequisites
 
-* [CMake](docs/CMAKE.md)
+* [CMake](docs/CMAKE.md) (3.16 or higher)
 * C++20
 * R and speciomer to read and analyze the data
 
