@@ -89,7 +89,7 @@ The genetic architecture refers to the constant features of the genotype-phenoty
 
 ### Saving data
 
-Set `datsave` to 1 to allow data recording. The data are saved into binary `*.dat` files:
+Set `datsave` to 1 to allow data recording. The data are saved every `tsave`generations into binary `*.dat` files:
 
 Name | Variables |
 |--|--|
@@ -117,18 +117,23 @@ Name | Variables |
 | `individual_traits.dat` | The value of each trait for each individual. |
 | `individual_midparents.dat` | The midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual. |
 
+Each variable is saved as a vector of values (64bit double precision floating point numbers). By default the program will save all variables. Set `choosewhattosave` to 1 to decide which variables to save instead. The program will then expect a file `whattosave.txt` in the working directory. This file should be a list of names of variable to save. For example:
 
-This means that each variable is saved as a vector of values (64 bit double precision floating point numbers). 
+```
+time
+EI
+SI
+RI
+locus_Fst
+```
 
-The following variables are saved every `tsave` timepoint:
+will save time, speciation metrics EI, SI and RI at each time point, and summary statistic Fst for each locus at each time point.
 
+### Reading data
 
+The data are saved in binary to speed up the writing (and the reading) process. Plus, different users will need to combine the data in many different ways depending on the question they are asking. To read and assemble the data into analyzable datasets, use our R package [speciomer](https://github.com/rscherrer/speciomer).
 
-By default the program will save all these variables. To save only some of them, you have to set `choosewhattosave` to 1. The order file `whattosave.txt` should contain a list of names of variable to save, separated by any type of blanks (e.g. `time EI SI RI locus_Fst`).
-
-**Note:** the computation of reproductive isolation (RI) requires sampling males and females at random in the population and pair them. This sampling can affect the generation of random numbers down the line. One consequence may be e.g. that different simulations run with the same seed but saving data at different time points may end up giving different results, just because the computation of RI adds to the sampling differently in the two replicates. To avoid this and make sure that the recording of RI does not affect the simulation, the sampling for RI is done using a separate random number generator from the rest of the simulation.
-
-## Saving whole individual genomes
+### Saving genomes
 
 Saving the whole genomes of all individuals through time takes a lot of space, for this reason this output is controlled separately from the other output variables. If you set `gensave 1` in addition to `datsave 1` two things will be saved every `tsave` generations: (1) the whole genomes of all individuals in `individual_whole_genomes.dat`, and (2) the genetic values at every locus for every individual in `individual_locus_genvalues.dat`. Both files are binary data files.
 
