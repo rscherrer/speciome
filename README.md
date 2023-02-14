@@ -134,4 +134,4 @@ This program is a descendent of [ExplicitGenomeSpeciation](https://github.com/rs
 
 ## Permissions
 
-Copyright (c) Raphael Scherrer and G. Sander van Doorn, 2023
+Copyright (c) Raphael Scherrer and G. Sander van Doorn, 2023 (open source license will be added upon publication).
