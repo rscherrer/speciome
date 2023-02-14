@@ -6,6 +6,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 * [CMake](docs/CMAKE.md)
 * C++20
+* R and speciomer to read and analyze the data
 
 ## Build
 
