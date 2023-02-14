@@ -6,7 +6,7 @@ This uses [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencie
 
 ### Linux, MacOS
 
-```bash
+```shell
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
 cp CMakeLists_devel.txt CMakeLists.txt # developer configuration
@@ -37,7 +37,7 @@ Executables for tests are built in `bin/tests/`.
 
 ### IDEs
 
-```bash
+```shell
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
 cp CMakeLists_devel.txt CMakeLists.txt # developer configuration

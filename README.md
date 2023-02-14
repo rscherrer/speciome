@@ -16,7 +16,7 @@ Here are instructions to build with CMake, but you can compile the source code w
 
 ### Linux, MacOS
 
-```bash
+```shell
 git clone git@github.com:rscherrer/speciome.git
 cd speciome
 cp CMakeLists_user.txt CMakeLists.txt # user configuration
@@ -46,7 +46,7 @@ The executable `speciome.exe` is built in `../bin/`.
 Many IDEs support CMake out of the box. "Open folder" should do the trick...
 You can use CMake to generate the input files for your favorite IDE too:
 
-```bash
+```shell
 git clone git@github.com:rscherrer/speciome.git
 cd speciom
 cp CMakeLists_user.txt CMakeLists.txt # user configuration
