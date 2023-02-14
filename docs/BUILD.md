@@ -4,8 +4,6 @@ This uses [vcpkg](https://github.com/microsoft/vcpkg) to install the dependencie
 
 * [Boost.Test](https://github.com/boostorg/test) (latest version) for unit testing
 
-Executables for tests are built in `bin/tests/`.
-
 ### Linux, MacOS
 
 ```bash
@@ -17,6 +15,8 @@ mkdir build && cd build
 cmake ..
 cmake --build .
 ```
+
+Executables for tests are built in `bin/tests/`.
 
 ### Windows
 
@@ -31,6 +31,7 @@ cmake ..
 cmake --build . --config Release
 ```
 
+Executables for tests are built in `bin/tests/`.
 
 ### IDEs
 
