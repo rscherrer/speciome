@@ -4,7 +4,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Prerequisites
 
-* A C++20 compiler
+* A C++20 compiler (e.g. [GCC](https://gcc.gnu.org) or [Clang](https://clang.llvm.org))
 * (optional) [CMake](docs/CMAKE.md) version 3.16 or higher
 * (optional) R and speciomer to read and analyze the data
 
@@ -13,6 +13,8 @@ Simulation program for evolutionary biologists to study speciation with a comple
 Here are instructions to build with CMake, but you can compile the source code with the tools of your choice.
 
 (Click [here](docs/BUILD.md) to build as developer.)
+
+(Click [here](docs/PEREGRINE.md) to build on the [Peregrine](https://www.rug.nl/society-business/centre-for-information-technology/research/services/hpc/facilities/peregrine-hpc-cluster?lang=en) cluster)
 
 ### Linux, MacOS
 
