@@ -17,8 +17,8 @@
 | sexsel | Sexual selection coefficient | 10 | Parameter for the intensity of mate choice. |
 | matingcost | Cost of choosiness | 0.01 | Probability that the mating season ends after examining a male. |
 | ntrials | Number of mating trials | 100 | Number of trials to perform to measure reproductive isolation. |
-| nvertices | Numbers of loci | 30 30 30 | Number of loci coding for each trait. |
-| nedges | Numbers of edges | 30 30 30 | Number of edges for each trait. |
+| nvertices | Numbers of loci | 30 30 30 | Number of loci coding for each trait. At least 2 for each trait. |
+| nedges | Numbers of edges | 30 30 30 | Number of edges for each trait. Cannot be higher than n * (n - 1) / 2 (complete graph) if n is the number of vertices for a trait. In practice, the preferential attachment algorithm may fail to attach all the requested edges of the network if nedges is close to the maximum possible number of edges. In this case the program will return an error. The number of edges should be at least n-1, which ensures that the network is connected (all the nodes are attached). |
 | nchrom | Number of chromosomes | 3 | Chromosomes all have equal lengths. |
 | mutation | Mutation rate | 0.001 | Probability of mutation per locus. |
 | recombination | Recombination rate | 3 | Rate of the exponential distribution describing the distance between two crossovers. |
@@ -28,11 +28,11 @@
 | scaleI | Scaling for epistasis | 0 0 0 | |
 | scaleE | Scaling for environmental effects | 0 0 0 | |
 | skews | Network skewness | 1 1 1 | Skewness of the preferential attachment algorithm for each trait. |
-| effectshape | Shape of effet size-distribution | 2 | Gamma distribution parameter. |
-| effectscale | Scale of effect size-distribution | 1 | Gamma distribution parameter. |
-| interactionshape | Shape of interaction weight-distribution | 5 | Gamma distribution parameter. |
-| interactionscale | Scale of interaction weight-distribution | 1 | Gamma distribution parameter. |
-| dominancevar | Standard deviation of dominance coefficient-distribution | 1 | Half-normal distribution parameter. |
+| effectshape | Shape of effet size-distribution | 2 | Gamma distribution parameter. If the resulting distribution has variance 0, all the loci are assigned effect size 1. |
+| effectscale | Scale of effect size-distribution | 1 | Gamma distribution parameter. If the resulting distribution has variance 0, all the loci are assigned effect size 1. |
+| interactionshape | Shape of interaction weight-distribution | 5 | Gamma distribution parameter. If the resulting distribution has variance 0, all the edges are assigned interaction weight 1. |
+| interactionscale | Scale of interaction weight-distribution | 1 | Gamma distribution parameter. If the resulting distribution has variance 0, all the edges are assigned interaction weight 1. |
+| dominancevar | Standard deviation of dominance coefficient-distribution | 1 | Half-normal distribution parameter. If 0, all the loci are assigned dominance coefficient 1.|
 | tburnin | Burn-in duration | 0 | In number of generations. |
 | tend | Simulation time | 10 | In number of generations (in addition to the burn-in). |
 | tsave | Saving frequency | 10 | In number of generations. |
