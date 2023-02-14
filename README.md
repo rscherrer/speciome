@@ -10,6 +10,8 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 ## Build
 
+Here are instructions to build with CMake, but you can compile the source code with the tools of your choice.
+
 (Click [here](docs/BUILD.md) to build as developer.)
 
 ### Linux, MacOS
