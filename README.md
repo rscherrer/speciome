@@ -89,33 +89,7 @@ The genetic architecture refers to the constant features of the genotype-phenoty
 
 ### Saving data
 
-Set `datsave` to 1 to allow data recording. The data are saved every `tsave`generations into binary `*.dat` files:
-
-| File | Variable |
-|--|--|
-| `time.dat` | Every saved time point. |
-| `population_sizes.dat` | Total population size (across both habitats). |
-| `ecotype_population_sizes.dat` | Population size of each ecotype. |
-| `habitat_resources.dat` | Equilibrium resource concentration of each resource in each habitat. |
-| `trait_means.dat` | Mean value of each trait across the whole population. |
-| `trait_ecotype_means.dat` | Mean value of each trait in each ecotype. |
-| `trait_varP.dat`, `trait_varG.dat`, `trait_varA.dat`, `trait_varD.dat`, `trait_varI.dat`, `trait_varN.dat` | Respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each trait. |
-| `trait_varT.dat` | Variance in allele frequencies across loci coding for each trait. |
-| `trait_Pst.dat`, `trait_Gst.dat`, `trait_Qst.dat`, `trait_Cst.dat` | Respectively the differentiation statistics between ecotypes for the phenotypic, genetic, additive and non-additive variance for each trait. |
-| `trait_Fst.dat` | Fixation index, or genetic differentiation between the two ecotypes, for each trait. |
-| `EI.dat`, `SI.dat`, `RI.dat` | Ecological, spatial and reproductive isolation between ecotypes, respectively. |
-| `locus_varP.dat`, `locus_varG.dat`, `locus_varA.dat`, `locus_varD.dat`, `locus_varI.dat`, `locus_varN.dat` | Respectively the phenotypic, genetic, additive, dominance, interaction and non-additive variance for each locus in the genome. |
-| `locus_Pst.dat`, `locus_Gst.dat`, `locus_Qst.dat`, `locus_Cst.dat`, `locus_Fst.dat` | Respectively the Pst, Gst, Qst, Cst and Fst for each locus. |
-| `locus_alpha.dat` | The average mutational effect (i.e. slope of the regression of genetic values against genotypes across the whole population) of each locus. |
-| `locus_meang.dat` | The mean genetic value of each locus in the whole population. |
-| `locus_freq.dat` | The allele frequency (of the 1-allele) for each locus in the whole population. |
-| `locus_ecotype_freq.dat` | The allele frequencies for each locus within each ecotype. |
-| `locus_ecotype_hobs.dat` | The observed heterozygosity for each locus within each ecotype. |
-| `edge_corgen.dat`, `edge_corbreed.dat`, `edge_corfreq.dat` | Respectively the pairwise correlations in genetic value, breeding value and allele frequency between the two interacting loci for each edge in all three networks (ordered by trait). |
-| `edge_avgi.dat`, `edge_avgj.dat` | The expected epistatic variance in average effect of the first and second interacting loci, respectively, for each edge. `edge_avgi` corresponds to the expected effect of genetic variation at locus i on the variation in the additive effect of allele substitutions at locus j, and vice versa for `edge_avgj`. This is mostly for plotting purposes, to detect genes that are expected to modify the additive effects of their interacting partners. |
-| `individual_ecotypes.dat`, `individual_habitats.dat` | The ecotype and habitat of each individual. |
-| `individual_traits.dat` | The value of each trait for each individual. |
-| `individual_midparents.dat` | The midparent phenotype (i.e. the mean between maternal and paternal values) for each trait for each individual. |
+Set `datsave` to 1 to allow data recording. The data are saved every `tsave` generations into binary `*.dat` files. Click [here](docs/VARIABLES.md) for a list of the variables that can be saved.
 
 Each variable is saved as a vector of values (64bit double precision floating point numbers). By default the program will save all variables. Set `choosewhattosave` to 1 to decide which variables to save instead. The program will then expect a file `whattosave.txt` in the working directory. This file should be a list of names of variable to save. For example:
 
@@ -139,14 +113,8 @@ Saving the whole genomes of all individuals through time takes a lot of space, f
 
 | File | Variable |
 |--|--|
-| `individual_whole_genomes.dat` | The whole genomes of all individuals. To save space, we use the fact that alleles are binary (0 or 1). Each value in a full genome is an allele at a specific position along one of the two haplotypes of an individual. Therefore, a genome contains twice as many values as there are loci (the organism is diploid). Each value is either 0 or 1 (the two possible alleles). Haplotypes are saved in turns, such that the first N values are all alleles of the first haplotype and the next N values are all alleles of the second haplotype, where N is the number of loci. This does not mean that each saved individual genome is exactly 2N values long, though. In order to save space for this large amount of data, individual genomes are first split into blocks of 64 bits, and each block is converted into a 64bit integer, which is then saved as binary. Therefore, the output file `individual_whole_genomes.dat` must be interpreted on a bit-wise basis in order to retrieve the actual alleles of the individual (i.e. reading it as 64bit integers will show integer-equivalents of chunks of 64 alleles). This also means that for each individual, a multiple of 64 bits will be written to the file, even if 2N alleles is not necessarily a multiple of 64. In other words, for each individual 2N bits will be written to file, and the remaining part of the last 64bit-chunk will be filled with zeros. You do not ha|
+| `individual_whole_genomes.dat` | The whole genomes of all individuals. To save space, we use the fact that alleles are binary (0 or 1). Each value in a full genome is an allele at a specific position along one of the two haplotypes of an individual. Therefore, a genome contains twice as many values as there are loci (the organism is diploid). Each value is either 0 or 1 (the two possible alleles). Haplotypes are saved in turns, such that the first N values are all alleles of the first haplotype and the next N values are all alleles of the second haplotype, where N is the number of loci. This does not mean that each saved individual genome is exactly 2N values long, though. In order to save space for this large amount of data, individual genomes are first split into blocks of 64 bits, and each block is converted into a 64bit integer, which is then saved as binary. Therefore, the output file `individual_whole_genomes.dat` must be interpreted on a bit-wise basis in order to retrieve the actual alleles of the individual (i.e. reading it as 64bit integers will show integer-equivalents of chunks of 64 alleles). This also means that for each individual, a multiple of 64 bits will be written to the file, even if 2N alleles is not necessarily a multiple of 64. In other words, for each individual 2N bits will be written to file, and the remaining part of the last 64bit-chunk will be filled with zeros. (You do not have to worry about all that, the R package [speciomer](https://github.com/rscherrer/speciomer) takes care of it.)|
 | `individual_locus_genvalues.dat` | |
-
-(1) the whole genomes of all individuals in `individual_whole_genomes.dat`, and (2) the genetic values at every locus for every individual in `individual_locus_genvalues.dat`. Both files are binary data files.
-
-1. Whole genomes are encoded in the freezer file in a different way from other variables. To save space, we use the fact that alleles are binary (0 or 1). Each value in a full genome is an allele at a specific position along one of the two haplotypes of an individual. Therefore, a genome contains twice as many values as there are loci, because the organisms are diploid. Each value is either 0 or 1 (the two possible alleles). Haplotypes are saved in turns, such that the first N values are all alleles of the first haplotype and the next N values are all alleles of the second haplotype, if N is the total number of loci. This does not mean that each saved individual genome is exactly 2N values long, though. In order to save space for this large amount of data, individual genomes are first split into blocks of 64 bits, and each block is converted into a 64bit integer, which is then saved as binary. Therefore, the output file `individual_whole_genomes.dat` must be interpreted on a bit-wise basis in order to retrieve the actual alleles of the individual (i.e. reading it as 64bit integers will show integer equivalents of chunks of 64 alleles). This also means that for each individual, a multiple of 64 bits will be written to the file, even if 2N alleles is not necessarily a multiple of 64. In other words, for each individual 2N bits will be written to file, and the remaining part of the last 64bit-chunk will be filled with zeros.
-
-2. Genetic values across the genome for each individual are stored in `individual_locus_genvalues.dat` as floating point numbers encoded into a binary file, just as the other output variables, but with one value per locus per individual, per time point. 
 
 **Important:** whole individual genomes take a lot of space. For this reason we advise against saving them too often. Unfortunately it is not possible to save some variables at a certain frequency and individual genomes less frequently in one simulation, as there is only one `tsave`. To collect data on different timelines, however, it is possible to run multiple simulations with the same `seed`. This can be done either by choosing a seed beforehand, or by saving the random seed of the first simulation (it will be saved in the parameter-log file `paramlog.txt` if `parsave 1`) and use it as `seed` to parametrize the next simulations.
 
