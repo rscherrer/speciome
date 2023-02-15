@@ -6,7 +6,7 @@ Simulation program for evolutionary biologists to study speciation with a comple
 
 * A C++20 compiler (e.g. [GCC](https://gcc.gnu.org) or [Clang](https://clang.llvm.org))
 * (optional) [CMake](docs/CMAKE.md) version 3.16 or higher
-* (optional) R and speciomer to read and analyze the data
+* (optional) R and [speciomer](https://github.com/rscherrer/speciomer) to read and analyze the data
 
 ## Build
 
