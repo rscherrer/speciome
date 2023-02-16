@@ -1,4 +1,5 @@
 # Potential folders within
+vcpkg/
 peregrine/
 analysis/
 ms/
