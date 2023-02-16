@@ -1,17 +1,17 @@
-#ifndef SPECIOME_SIMUL_H
-#define SPECIOME_SIMUL_H
+#ifndef SPECIOME_SIMUL_HPP
+#define SPECIOME_SIMUL_HPP
 
 // This is the header containing the main simulation function and some
 // accompanying functions. The core of the program was encapsulated into a
 // simulate() function in order for it to be tested separately.
 
-#include "Param.h"
-#include "GenArch.h"
-#include "Random.h"
-#include "MetaPop.h"
-#include "Collector.h"
-#include "Printer.h"
-#include "Freezer.h"
+#include "Param.hpp"
+#include "GenArch.hpp"
+#include "Random.hpp"
+#include "MetaPop.hpp"
+#include "Collector.hpp"
+#include "Printer.hpp"
+#include "Freezer.hpp"
 #include <stddef.h>
 #include <iostream>
 #include <cstdio>

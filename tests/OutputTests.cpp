@@ -1,9 +1,11 @@
-#include "src/Collector.h"
-#include "src/Printer.h"
-#include "src/Freezer.h"
-#include "src/Random.h"
-#include "src/Utilities.h"
-#include "tests/TestUtilities.h"
+#define BOOST_TEST_MODULE OutputTests
+
+#include "../src/Collector.hpp"
+#include "../src/Printer.hpp"
+#include "../src/Freezer.hpp"
+#include "../src/Random.hpp"
+#include "../src/Utilities.hpp"
+#include "../src/TestUtilities.hpp"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 #include <cassert>
@@ -58,7 +60,7 @@ BOOST_AUTO_TEST_CASE(OutputFilesAreCorrectlyWritten)
     std::vector<double> ri = tst::readfile("RI.dat");
 
     // Check output files
-    BOOST_CHECK_EQUAL(time.size(), 10u);\
+    BOOST_CHECK_EQUAL(time.size(), 10u);
     BOOST_CHECK_EQUAL(ei.size(), 10u);
     BOOST_CHECK_EQUAL(si.size(), 10u);
     BOOST_CHECK_EQUAL(ri.size(), 10u);

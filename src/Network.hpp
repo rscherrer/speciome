@@ -1,14 +1,13 @@
-#ifndef SPECIOME_NETWORK_H
-#define SPECIOME_NETWORK_H
+#ifndef SPECIOME_NETWORK_HPP
+#define SPECIOME_NETWORK_HPP
 
 // A class for a gene regulatory network. One network underlies one of the
 // three traits of the simulation. Networks are generated using a
 // preferential attachment algorithm, and are part of the bigger class GenArch.
 
-#include "Param.h"
-
-#include "Utilities.h"
-#include "Random.h"
+#include "Param.hpp"
+#include "Utilities.hpp"
+#include "Random.hpp"
 #include <cassert>
 #include <stddef.h>
 

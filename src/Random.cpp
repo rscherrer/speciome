@@ -1,4 +1,4 @@
-#include "Random.h"
+#include "Random.hpp"
 
 // This sript defines random number generators used in the rnd namespace
 

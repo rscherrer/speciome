@@ -1,7 +1,7 @@
-#include "src/Param.h"
-#include "src/GenArch.h"
-#include "src/Random.h"
-#include "src/Simul.h"
+#include "src/Param.hpp"
+#include "src/GenArch.hpp"
+#include "src/Random.hpp"
+#include "src/Simul.hpp"
 #include <cassert>
 #include <iostream>
 #include <chrono>

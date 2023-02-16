@@ -1,4 +1,4 @@
-#include "Freezer.h"
+#include "Freezer.hpp"
 
 // This is the source code for the member functions of the Freezer class.
 
