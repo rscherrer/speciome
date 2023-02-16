@@ -50,7 +50,7 @@ You can use CMake to generate the input files for your favorite IDE too:
 
 ```shell
 git clone git@github.com:rscherrer/speciome.git
-cd speciom
+cd speciome
 cp CMakeLists_user.txt CMakeLists.txt # user configuration
 mkdir build
 cd build
