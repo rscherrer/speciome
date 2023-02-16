@@ -1,4 +1,6 @@
-#include "tests/TestUtilities.h"
+#include "TestUtilities.hpp"
+
+// Source code for the functions of the tst namespace
 
 std::vector<double> tst::readfile(const std::string &filename)
 {

@@ -1,11 +1,15 @@
-#ifndef EXPLICITGENOMESPECIATION_GENARCH_H
-#define EXPLICITGENOMESPECIATION_GENARCH_H
+#ifndef SPCIOME_GENARCH_HPP
+#define SPCIOME_GENARCH_HPP
 
-#include "Param.h"
-#include "Random.h"
-#include "Network.h"
+// The genetic architecture contains locus-specific details about the
+// genotype-phenotype map. It is created using the parameters, but contains
+// large arrays of values across the whole genome, and is therefore
+// larger than the Param class.
 
-#include "Utilities.h"
+#include "Param.hpp"
+#include "Random.hpp"
+#include "Network.hpp"
+#include "Utilities.hpp"
 #include <cassert>
 #include <stddef.h>
 #include <cstddef>
@@ -13,11 +17,6 @@
 typedef std::pair<size_t, size_t> Edge;
 typedef std::vector<Network> MultiNet;
 typedef std::vector<std::shared_ptr<std::ofstream> > vecStreams;
-
-// The genetic architecture contains locus-specific details about the
-// genotype-phenotype map. It is created using the parameters, but contains
-// large arrays of values across the whole genome, and is therefore
-// larger than the Param class.
 
 class GenArch {
 

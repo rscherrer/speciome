@@ -1,18 +1,17 @@
-#ifndef EXPLICITGENOMESPECIATION_PARAM_H
-#define EXPLICITGENOMESPECIATION_PARAM_H
+#ifndef SPECIOME_PARAM_HPP
+#define SPECIOME_PARAM_HPP
 
+// Parameter set. Contains values of the parameters of the simulation.
+// All parameters have default values that can be modified by calling
+// the program with a parameter file name as unique argument.
 
-#include "Utilities.h"
-#include "Random.h"
+#include "Utilities.hpp"
+#include "Random.hpp"
 #include <fstream>
 #include <iostream>
 #include <chrono>
 #include <cassert>
 #include <cstdint>
-
-// Parameter set. Contains values of the parameters of the simulation.
-// All parameters have default values that can be modified by calling
-// the program with a parameter file name as unique argument.
 
 struct Param {
 

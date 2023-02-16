@@ -1,5 +1,6 @@
-#include "MetaPop.h"
+#include "MetaPop.hpp"
 
+// This is the source code for the member functions of the MetaPop class.
 
 // Initialization
 

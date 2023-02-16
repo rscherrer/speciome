@@ -1,8 +1,7 @@
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MAIN
+#define BOOST_TEST_MODULE SimulTests
 
-#include "src/Simul.h"
-#include "tests/TestUtilities.h"
+#include "../src/Simul.hpp"
+#include "../src/TestUtilities.hpp"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 

@@ -1,4 +1,6 @@
-#include "Network.h"
+#include "Network.hpp"
+
+// This is the source code for the member functions of the Network class.
 
 bool checkedges(const size_t &e, const size_t &n)
 {

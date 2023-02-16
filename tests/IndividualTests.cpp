@@ -1,5 +1,7 @@
-#include "src/Individual.h"
-#include "src/Utilities.h"
+#define BOOST_TEST_MODULE IndividualTests
+
+#include "../src/Individual.hpp"
+#include "../src/Utilities.hpp"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 

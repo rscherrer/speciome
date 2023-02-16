@@ -1,3 +1,13 @@
+# Potential folders within
+peregrine/
+analysis/
+ms/
+data/
+approx/
+extra/
+mating/
+speciomer/
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
@@ -1038,3 +1048,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+.Rproj.user

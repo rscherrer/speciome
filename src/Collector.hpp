@@ -1,15 +1,15 @@
-#ifndef EXPLICITGENOMESPECIATION_COLLECTOR_H
-#define EXPLICITGENOMESPECIATION_COLLECTOR_H
+#ifndef SPECIOME_COLLECTOR_HPP
+#define SPECIOME_COLLECTOR_HPP
 
-// This header contains the declarations of the Collector class and allies
-// This class is an analytical module for the simulation
+// This header contains the declarations of the Collector class and allies.
+// This class is an analytical module for the simulation.
 // Using its main function "analyze", it computes many statistics from the
-// population (genome-wide, locus-specific or edge-specific statistics)
-// The content of the Collector is reset every time "analyze" is called
+// population (genome-wide, locus-specific or edge-specific statistics).
+// The content of the Collector is reset every time "analyze" is called.
 
-#include "Utilities.h"
-#include "MetaPop.h"
-#include "GenArch.h"
+#include "Utilities.hpp"
+#include "MetaPop.hpp"
+#include "GenArch.hpp"
 #include <cassert>
 
 // A class for locus-specific statistics

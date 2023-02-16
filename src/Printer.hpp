@@ -1,12 +1,12 @@
-#ifndef EXPLICITGENOMESPECIATION_PRINTER_H
-#define EXPLICITGENOMESPECIATION_PRINTER_H
+#ifndef SPECIOME_PRINTER_HPP
+#define SPECIOME_PRINTER_HPP
 
 // This module is used to save summary statistics from the Collector to output
 // files
 
-#include "Utilities.h"
-#include "Collector.h"
-#include "MetaPop.h"
+#include "Utilities.hpp"
+#include "Collector.hpp"
+#include "MetaPop.hpp"
 #include <cassert>
 
 class Printer

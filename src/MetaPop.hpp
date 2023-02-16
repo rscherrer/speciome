@@ -1,10 +1,16 @@
-#ifndef EXPLICITGENOMESPECIATION_METAPOP_H
-#define EXPLICITGENOMESPECIATION_METAPOP_H
+#ifndef SPECIOME_METAPOP_HPP
+#define SPECIOME_METAPOP_HPP
 
-#include "Param.h"
-#include "GenArch.h"
-#include "Individual.h"
-#include "Utilities.h"
+// This header contains the class MetaPop. A MetaPop is a wrapper around a
+// vector of Individual objects with a bunch of member functions applying
+// a life cycle to those individuals. Note: it is called MetaPop because
+// there are two patches linked by dispersal, so the model is technically
+// a metapopulation.
+
+#include "Param.hpp"
+#include "GenArch.hpp"
+#include "Individual.hpp"
+#include "Utilities.hpp"
 
 #include <cassert>
 

@@ -1,20 +1,18 @@
-#ifndef EXPLICITGENOMESPECIATION_FREEZER_H
-#define EXPLICITGENOMESPECIATION_FREEZER_H
+#ifndef SPECIOME_FREEZER_HPP
+#define SPECIOME_FREEZER_HPP
 
 // This module is a special printer used for saving individual full genomes,
-// directly from the MetaPop
-
-#include "Utilities.h"
-#include "MetaPop.h"
-#include "Printer.h"
-#include <cassert>
-
-// Note: Using 64bit integers is a way to save space when saving full genomes
+// directly from the MetaPop.
+// Note: Using 64bit integers is a way to save space when saving full genomes.
 // The stf::write function saves in binary format, meaning that it will
-// convert back the integers into their underlying bitsets
+// convert back the integers into their underlying bitsets.
 // The resulting binary output file should therefore be interpreted as
-// a bit-wise array; each value (allele) is encoded by a single bit
+// a bit-wise array; each value (allele) is encoded by a single bit.
 
+#include "Utilities.hpp"
+#include "MetaPop.hpp"
+#include "Printer.hpp"
+#include <cassert>
 
 class Freezer
 {

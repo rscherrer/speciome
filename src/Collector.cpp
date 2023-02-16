@@ -1,4 +1,6 @@
-#include "Collector.h"
+#include "Collector.hpp"
+
+// This is the source code for the member functions of the Collector class.
 
 // Analytical functions of the Collector module
 //---------------------------------------------
