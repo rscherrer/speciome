@@ -1,7 +1,7 @@
 # Potential folders within
 vcpkg/
 peregrine/
-analysis/
+analyses/
 ms/
 data/
 approx/
