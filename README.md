@@ -132,6 +132,11 @@ Saving the whole genomes of all individuals through time takes a lot of space, f
 
 This program is a descendent of [ExplicitGenomeSpeciation](https://github.com/rscherrer/ExplicitGenomeSpeciation). Disclaimer: this simulation program was used to get insights into the effect of the genetic architecture on the process of speciation. It was not designed as a statistical inference package or a data processing tool, although its simulations could in theory be used for training machine learning algorithms to recognize various evolutionary scenarios. This code comes with no guarantee whatsoever.
 
+## Links
+
+* [speciomer](https://github.com/rscherrer/speciomer): read the simulated data in R
+* [speciomx](https://github.com/rscherrer/speciomx): deterministic approximation based on adaptive dynamics theory
+
 ## Permissions
 
 Copyright (c) Raphael Scherrer and G. Sander van Doorn, 2023 (open source license will be added upon publication).
