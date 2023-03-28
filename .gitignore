@@ -1,12 +1,8 @@
 # Potential folders within
 vcpkg/
-peregrine/
 analyses/
 ms/
 data/
-approx/
-extra/
-mating/
 speciomer/
 speciomx/
 
