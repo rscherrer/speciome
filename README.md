@@ -136,6 +136,7 @@ This program is a descendent of [ExplicitGenomeSpeciation](https://github.com/rs
 
 * [speciomer](https://github.com/rscherrer/speciomer): read the simulated data in R
 * [speciomx](https://github.com/rscherrer/speciomx): deterministic approximation based on adaptive dynamics theory
+* [speciome-private](https://github.com/rscherrer/speciome-private): stuff that needs not be made public
 
 ## Permissions
 
